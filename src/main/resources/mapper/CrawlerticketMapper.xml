@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.super223.mapper.CrawlerticketMapper">
+  <resultMap id="BaseResultMap" type="com.super223.model.Crawlerticket">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="locationid" jdbcType="INTEGER" property="locationid" />
+    <result column="merchant" jdbcType="VARCHAR" property="merchant" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+  </resultMap>
+</mapper>

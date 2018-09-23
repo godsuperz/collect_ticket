@@ -1,6 +1,11 @@
 server:
   port: 8080
 
+restart:
+  include:
+    mapper: /mapper-[\\w-\\.]+jar
+    pagehelper: /pagehelper-[\\w-\\.]+jar
+
 spring:
   #热部署生效
   #设置重启的目录，添加那个目录的文件需要restart
@@ -21,7 +26,7 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
-    mode: LEGACYHTML5
+    mode: HTML
     encoding: UTF-8
     servlet:
       content-type: text/html
@@ -29,3 +34,38 @@ spring:
     cache: false
 
 
+
+  # 配置数据源相关 使用阿里巴巴的druid数据源
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/collect_ticket?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      stat-view-servlet:
+        allow: true
+
+
+
+# mybatis配置
+mybatis:
+  type-aliases-package: com.super223.model
+  mapper-locations: classpath:mapper/*.xml
+# 通用Mapper配置
+mapper:
+  mappers: com.super223.utils.MyMapper
+  identity: MYSQL
+  not-empty: false
+# 分页插件配置
+pagehelper:
+  auto-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+logging:
+  level:
+    com.super223.mapper: debug

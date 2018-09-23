@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.super223.mapper.TicketMapper">
+  <resultMap id="BaseResultMap" type="com.super223.model.Ticket">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="REAL" property="price" />
+    <result column="merchantid" jdbcType="INTEGER" property="merchantid" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="state" jdbcType="BIT" property="state" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+    <result column="audit" jdbcType="BIT" property="audit" />
+    <result column="click" jdbcType="INTEGER" property="click" />
+    <result column="purchase" jdbcType="INTEGER" property="purchase" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="actors" jdbcType="VARCHAR" property="actors" />
+    <result column="categoryname" jdbcType="VARCHAR" property="categoryname" />
+    <result column="cityname" jdbcType="VARCHAR" property="cityname" />
+    <result column="iseticket" jdbcType="BIT" property="iseticket" />
+    <result column="isgeneralagent" jdbcType="BIT" property="isgeneralagent" />
+    <result column="issuperticket" jdbcType="BIT" property="issuperticket" />
+    <result column="isxuanzuo" jdbcType="BIT" property="isxuanzuo" />
+    <result column="nameNoHtml" jdbcType="VARCHAR" property="namenohtml" />
+    <result column="pricehigh" jdbcType="REAL" property="pricehigh" />
+    <result column="showstatus" jdbcType="VARCHAR" property="showstatus" />
+    <result column="showtag" jdbcType="VARCHAR" property="showtag" />
+    <result column="showtime" jdbcType="VARCHAR" property="showtime" />
+    <result column="subcategoryname" jdbcType="VARCHAR" property="subcategoryname" />
+    <result column="venue" jdbcType="VARCHAR" property="venue" />
+  </resultMap>
+</mapper>

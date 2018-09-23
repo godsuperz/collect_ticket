@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/static/css/dl.css}" href="../../static/css/dl.css">
+    <title>用户登录-DLSZ网</title>
+</head>
+<body>
+    <header>
+        <div class="w1204">
+            <div class="logo">
+                <a th:href="@{/}" href="#">DLSZ</a>
+            </div>
+            <h2 class="title">会员登录</h2>
+        </div>
+    </header>
+    <main>
+        <div class="login_page">
+            <div class="login_main">
+                <div class="static_form">
+                    <div class="tt">账号登录</div>
+                    <div class="field">
+                        <i class="ico_user"></i>
+                        <input class="ipt" value="" name="username" placeholder="注册账号/手机号" maxlength="32" type="text">
+                    </div>
+                    <div class="field">
+                        <i class="ico_pass"></i>
+                        <input type="password" class="ipt" value="" name="password" placeholder="登录密码" maxlength="20">
+                    </div>
+                    <div class="login_links">
+                        <span>还没有DLSZ账号?</span>
+                        <a th:href="@{/User/register}" href="zhuce.html">点击注册</a>
+                    </div>
+                    <div class="field">
+                        <button class="btn btn-default gbtn">登 录</button>
+                    </div>
+                    <div class="entries">
+                        <a class="qq" href="#">
+                            <b class="qq"></b>
+                            QQ账号
+                        </a>
+                        <a class="wb" href="#">
+                            <b class="wb"></b>
+                            新浪微博
+                        </a>
+                        <a class="wx" href="#">
+                            <b class="wx"></b>
+                            微信登录
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="mini_foot">
+            <p>Copyright 2018.9 © DLSZ网 Java班 第三小组</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="/static/css/geren.css">
+    <script src=""></script>
+    <title>我的DLSZ-收货地址</title>
+</head>
+<body>
+    <header>
+        <!-- 顶部栏 -->
+        <div class="new-navbar">
+            <div class="w1200">
+                <div class="slogan">文化青年，品质生活~</div>
+
+
+                <div class="nav-top">
+                    <!-- 未登录 -->
+
+
+                    <!-- 已登录 -->
+                    <div id="js-login-out" class="ds-inlineb">
+                        <div class="nav-items">
+                            <span class="c9">你好,</span>
+                            <a id="js-get-username" class="nav-link no-border-left" href="" target="_black">DLSZ</a>
+                        </div>
+                        <div class="nav-items">
+                            <a class="nav-link c9" href="denglu.html">退出</a>
+                        </div>
+                    </div> 
+                    <!-- 已登陆END -->
+
+
+                    <div class="nav-items">
+                        <a class="nav-link" href="#">我的订单</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="new-header new-shadow">
+            <div class="w1200">
+                <div class="shouye">
+                    <a href="../shouye.html">DLSZ</a>
+                </div><!-- 
+                --><div class="search-box">
+                    <div class="search-bar">
+                        <div class="search-input">
+                            <input class="js-search" type="text">
+                        </div><!-- 
+                         --><a href="#" class="search-btn">
+                            <i></i>
+                        </a>
+                    </div>
+                    <div class="hot-search">
+                        <ul>
+                            <li><a href="">小野丽莎</a></li>
+                            <li><a href="">陈慧娴</a></li>
+                            <li><a href="">十二生肖</a></li>
+                            <li><a href="">三体</a></li>
+                            <li><a href="">回声</a></li>
+                            <li><a href="">GATS</a></li>
+                            <li><a href="">杨丞琳</a></li>
+                            <li><a href="">房东的猫</a></li>
+                            <li><a href="">花粥</a></li>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="w1200 mydlsz">
+        <div class="my-menu">
+            <h2 class="my-dlsz"><a href="#">我的DLSZ</a></h2>
+            <h2 class="my-order"><a href="#">订单中心</a> </h2>
+            <ul>
+                <li><a id="hover" class="noh" href="myorderlist.html"><i></i><b class="arr"></b>我的订单</a></li>
+                <li><a id="hover" class="noh" href="mycollect.html"><i></i><b class="arr"></b>我的关注</a></li>
+            </ul>
+            <h2 class="my-profile"><a href="#">账户中心</a> </h2>
+            <ul>
+                <li><a id="hover" class="noh" href="myprofile.html"><i></i><b class="arr"></b>个人资料</a></li>
+                <li><a id="hover" class="active" href="myaddress.html"><i></i><b class="arr"></b>收获地址</a></li>
+            </ul>
+            <h2 class="my-note"><a href="#">消息提醒</a> </h2>
+        </div>
+        <div class="u-warp2014">
+            <div class="u-title">
+                <h3>收货地址</h3>
+                <div class="o-t-tips">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="stockPor">
+                <div class="st-tit">
+                    <ul class="clearfix">
+                        <li class="st-th1">
+                            收货人
+                            <b class="line"></b>
+                        </li>
+                        <li class="st-th2">
+                            地区
+                            <b class="line"></b>
+                        </li>
+                        <li class="st-th3">
+                            详细地址
+                            <b class="line"></b>
+                        </li>
+                        <li class="st-th4">
+                            电话/手机
+                            <b class="line"></b>
+                        </li>
+                    </ul>
+                </div>
+                <table class="address-table" width="100%">
+                    <tr>
+                        <td class="st-th1">
+                            张岩
+                        </td>
+                        <td class="st-th2">
+                            河南 郑州 金水区
+                        </td>
+                        <td class="st-th3">
+                            文化路97号
+                        </td>
+                        <td class="st-th4">
+                            13253356287
+                        </td>
+                        <td class="address-td-status">
+                            默认地址
+                        </td>
+                        <td class="address-td-op">
+                            <a href="#">修改</a> 
+                            <a href="#">删除</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="myaddress-form">
+                <div class="si-tab-bd">
+                    <div class="myprofile myprofile2">
+                        <div id="tab-box-01" class="EditData2">
+                            <div class="EditData-form">
+                                <div class="edf-tit">
+                                    <b class="txt">新增收货地址：</b>
+                                </div>
+                                <form class="" method="post">
+                                    <ul>
+                                        <li class="clearfix">
+                                            <span class="e-name"><span class="red">*</span>收货人：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="cosignee" type="text" maxlength="30">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                                <span class="e-name"><span class="red">*</span>地区：</span>
+                                                <div class="col-md-10">
+                                                    <select name="provice">
+                                                        <option value="0" selected="selected">--请选择--</option>
+                                                        <option value="1">北京</option>
+                                                        <option value="2">河南</option>
+                                                    </select>
+                                                    <select name="city">
+                                                        <option value="0" selected="selected">--请选择--</option>
+                                                        <option value="1"></option>
+                                                        <option value="2"></option>
+                                                    </select>
+                                                    <select name="district">
+                                                        <option value="0" selected="selected">--请选择--</option>
+                                                        <option value="1"></option>
+                                                        <option value="2"></option>
+                                                    </select>
+                                                </div>
+                                            </li>
+                                        <li class="clearfix">
+                                            <span class="e-name"><span class="red">*</span>详细地址：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control myjc-ipt" name="address" type="text" maxlength="30">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">邮政编码：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="zipcode" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name"><span class="red">*</span>手机号码：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="mobile" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">固定电话：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="tel" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">电子邮箱：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="email" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                       <li class="clearfix">
+                                            <span class="e-name">&nbsp;</span>
+                                            <input name="state" value="0" type="hidden" class="hidden">
+                                            <label class="label-cursor">
+                                                <span id="checkstate" class="s-checkbox"></span>设为默认地址
+                                            </label>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">&nbsp;</span>
+                                            <button id="save" class="btn save-profile">确认</button>
+                                        </li>
+                                    </ul>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </main>
+    <footer>
+        <div class="mini_foot">
+            <p>Copyright 2018.9 © DLSZ网 Java班 第三小组</p>
+        </div>
+    </footer>
+</body>
+<script>
+    var hover = document.getElementsByClassName("noh");
+    for(var i =0;i<hover.length;i++){
+        hover[i].onmouseover = function(){
+            console.log("123")
+            this.classList.add("active");
+        }
+        hover[i].onmouseout = function(){
+            this.setAttribute("class","noh")
+        }
+    }
+
+    var hidden = document.getElementsByClassName("hidden")[0];
+    var value = hidden.getAttribute("value");
+    // console.log(value);
+
+    var check = document.getElementById("checkstate")
+    // console.log(check);
+    check.onclick = function(){
+    
+        if(value == 0){
+            // console.log(check)
+            check.classList.add("aactive");
+            value = 1;
+        }
+        else{
+            check.setAttribute("class","s-checkbox")
+            value = 0;
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="../static/css/geren.css">
+    <link rel="stylesheet" th:href="@{/static/css/shouye.css}" href="../static/css/shouye.css">
+    <title>DLSZ-首页</title>
+</head>
+<body>
+    <header>
+        <!-- 顶部栏 -->
+        <div class="new-navbar">
+            <div class="w1200">
+                <div class="slogan">文化青年，品质生活~</div>
+
+
+                <div class="nav-top">
+                    <!-- 未登录 -->
+
+
+                    <!-- 已登录 -->
+                    <div id="js-login-out" class="ds-inlineb">
+                        <th:block th:if="1 eq 0">
+                            <div class="nav-items">
+                                <a id="js-get-username" class="nav-link no-border-left" href="user/myorderlist.html" target="_black">你好, DLSZ</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link c9" href="user/denglu.html">退出</a>
+                            </div>
+                        </th:block>
+                        <th:block th:if="1 eq 1">
+                            <div class="nav-items">
+                                <a id="login" class="nav-link no-border-left" th:href="@{/User/login}" href="user/myorderlist.html">登录</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link" th:href="@{/User/register}">注册</a>
+                            </div>
+                        </th:block>
+                    </div> 
+                    <!-- 已登陆END -->
+
+
+                    <div class="nav-items">
+                        <a class="nav-link" href="user/myorderlist.html">我的订单</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="new-header">
+            <div class="w1200 content-box">
+                <div class="shouye">
+                    <a href="#">DLSZ</a>
+                </div><!-- 
+                --><div class="search-box">
+                    <div class="search-bar">
+                        <div class="search-input">
+                            <input class="js-search" type="text">
+                        </div><!-- 
+                         --><a href="#" class="search-btn">
+                            <i></i>
+                        </a>
+                    </div>
+                    <div class="hot-search">
+                        <ul>
+                            <li><a href="">小野丽莎</a></li>
+                            <li><a href="">陈慧娴</a></li>
+                            <li><a href="">十二生肖</a></li>
+                            <li><a href="">三体</a></li>
+                            <li><a href="">回声</a></li>
+                            <li><a href="">GATS</a></li>
+                            <li><a href="">杨丞琳</a></li>
+                            <li><a href="">房东的猫</a></li>
+                            <li><a href="">花粥</a></li>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+            <div class="nav-head">
+                <ul class="w1200 hei">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">全部商品分类</a>
+                        <!-- 侧边导航 -->
+                        <div class="kind-list" id="kind">
+                            <div class="left-index">
+                                <a class="kind-link" id="yanchang" href="#">
+                                    <i class="bg-icon kind-icon"></i>
+                                    <span class="kind-text">演唱会</span>
+                                    <i class="bg-icon more-icon"></i>
+                                </a>
+                                <a class="kind-link" id="yy" href="#">
+                                    <i class="bg-icon kind-icon2"></i>
+                                    <span class="kind-text">音乐会</span>
+                                    <i class="bg-icon more-icon"></i>
+                                </a>
+                                <a class="kind-link" id="gj" href="#">
+                                    <i class="bg-icon kind-icon3"></i>
+                                    <span class="kind-text">歌剧话剧</span>
+                                    <i class="bg-icon more-icon"></i>
+                                </a>
+                                <a class="kind-link" id="et" href="#">
+                                    <i class="bg-icon kind-icon4"></i>
+                                    <span class="kind-text">儿童亲子</span>
+                                    <i class="bg-icon more-icon"></i>
+                                </a>
+                                <a class="kind-link" href="#">
+                                    <i class="bg-icon kind-icon5"></i>
+                                    <span class="kind-text">音乐剧</span>
+                                    <i class="bg-icon more-icon"></i>
+                                </a>
+                                <a class="kind-link" href="#">
+                                    <i class="bg-icon kind-icon6"></i>
+                                    <span class="kind-text">戏曲综艺</span>
+                                    <i class="bg-icon more-icon"></i>
+                                </a>
+                                <a class="kind-link" href="#">
+                                    <i class="bg-icon kind-icon7"></i>
+                                    <span class="kind-text">展览</span>
+                                    <i class="bg-icon more-icon"></i>
+                                </a>
+                            </div>
+                            <div class="right-detail" id="right">
+                                <div class="kind-details" id="r1" style="background-image: url(../static/image/i1.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            流行
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>摇滚
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>民谣
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>民族
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="kind-details" id="r2" style="background-image: url(../static/image/yy.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            交响
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>独奏
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kind-details" id="r3" style="background-image: url(../static/image/gj.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            话剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>歌剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>歌舞剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kind-details" id="r4" style="background-image: url(../static/image/et.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            儿童剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>亲子活动
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">流行音乐</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">古典音乐</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">舞台剧</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">儿童亲子</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">音乐剧</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="scroll" class="scroll">
+            <div id="box" class="box">
+                <ul id="ul">
+                    <li><img src="../static/image/l06.jpg" width="1200" height="400"></li>
+                    <li><img src="../static/image/l05.jpg" width="1200" height="400"></li>
+                    <li><img src="../static/image/l03.jpg" width="1200" height="400"></li>
+                    <li><img src="../static/image/l09.jpg" width="1200" height="400"></li>
+                    <li><img src="../static/image/l11.jpg" width="1200" height="400"></li>
+                </ul>
+                <!-- 换图按钮 -->
+                
+                <a id="prev" class="b-btn banner-prev" ></a>
+                <a id="next" class="b-btn banner-next"></a>
+            </div>
+        </div>
+        <div class="city w1200">
+            <div class="title-row">
+                <div class="title">全国</div>
+                <div class="title-after">
+                    <div class="other-city">
+                        <a href="#" class="link link-primary">[其他城市]</a>
+                    </div>
+                </div>
+            </div>
+            <div class="city-content">
+                <ul class="list w-small">
+                    <div class="list-item">
+                        <div class="item-img-wrap" id="wrap">
+                            <a href="#">
+                                <img src="../static/image/z01.jpeg" alt="" class="item-img">
+                            </a>
+                            <div class="item-img-info" id="info">
+                                <div>
+                                    <a href="#" class="link">广州大剧院 歌剧厅</a>
+                                </div>
+                                <div class="margin-top10">
+                                    <a href="#" class="link">2018.10.09 14:30</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-title">
+                            <a href="#">世界经典原版音乐剧《猫》Cats 广州站</a>
+                        </div>
+                        <div class="item-text">
+                            <div class="item-detail">
+                                <div class="item-left">
+                                    <div class="link">音乐剧</div>
+                                </div>
+                                <div class="item-right price">
+                                    <span class="price-kind">￥</span>
+                                    <span class="price-amount">280</span>
+                                    起
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-img-wrap" id="wrap1">
+                            <a href="#">
+                                <img src="../static/image/z02.jpg" alt="" class="item-img">
+                            </a>
+                            <div class="item-img-info" id="info1">
+                                <div>
+                                    <a href="#" class="link">上汽·上海文化广场</a>
+                                </div>
+                                <div class="margin-top10">
+                                    <a href="#" class="link">2018.09.02 14:00</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-title">
+                            <a href="#">百老汇经典原版音乐剧《吉屋出租》RENT 二十周年巡演-上海站</a>
+                        </div>
+                        <div class="item-text">
+                            <div class="item-detail">
+                                <div class="item-left">
+                                    <div class="link">音乐剧</div>
+                                </div>
+                                <div class="item-right price">
+                                    <span class="price-kind">￥</span>
+                                    <span class="price-amount">80</span>
+                                    起
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-img-wrap" id="wrap2">
+                            <a href="#">
+                                <img src="../static/image/z03.jpg" alt="" class="item-img">
+                            </a>
+                            <div class="item-img-info" id="info2">
+                                <div>
+                                    <a href="#" class="link">静安体育中心-体育馆</a>
+                                </div>
+                                <div class="margin-top10">
+                                    <a href="#" class="link">2018.08.11 19:30</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-title">
+                            <a href="#">三个女人的壮阔人生--三毛·齐豫·潘越云《回声》巡回演唱会2018-上</a>
+                        </div>
+                        <div class="item-text">
+                            <div class="item-detail">
+                                <div class="item-left">
+                                    <div class="link">音乐剧</div>
+                                </div>
+                                <div class="item-right price">
+                                    <span class="price-kind">￥</span>
+                                    <span class="price-amount">1280</span>
+                                    起
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-item">
+                        <div class="item-img-wrap" id="wrap3">
+                            <a href="#">
+                                <img src="../static/image/z04.jpg" alt="" class="item-img">
+                            </a>
+                            <div class="item-img-info" id="info3">
+                                <div>
+                                    <a href="#" class="link">南山文体中心剧院大剧院</a>
+                                </div>
+                                <div class="margin-top10">
+                                    <a href="#" class="link">2018.08.26 20:00</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-title">
+                            <a href="#">2018年欧阳娜娜18跨界巡回音乐会--深圳站</a>
+                        </div>
+                        <div class="item-text">
+                            <div class="item-detail">
+                                <div class="item-left">
+                                    <div class="link">音乐剧</div>
+                                </div>
+                                <div class="item-right price">
+                                    <span class="price-kind">￥</span>
+                                    <span class="price-amount">180</span>
+                                    起
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+            <div class="city-right">
+                <div class="title-row">
+                    <div class="title">专题推荐</div>
+                </div>
+                <div class="media-list-vertical">
+                    <div class="media-img-wrap"></div>
+                    <div class="media-title">
+                        <a href="#" class="link">DLSZ分享家，分享演出赚佣金</a>
+                    </div>
+                    <div class="media-text">
+                        <ul class="block-list">
+                            <li class="item">
+                                <a href="#" class="link link-primary">
+                                    <span class="bullet-circle"></span>
+                                    <span class="buttet-text"> 2018第二届嬉习喜戏艺术节	</span>
+                                </a>
+                            </li>
+                            <li class="item">
+                                <a href="#" class="link link-primary">
+                                    <span class="bullet-circle"></span>
+                                    <span class="buttet-text"> 那些动人的故事	</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="btn-wrap">
+                            <div class="btn-list">
+                                <li class="btn-item">
+                                    <a href="#" class="link">小野丽莎</a>
+                                </li>
+                                <li class="btn-item">
+                                    <a href="#" class="link">陈慧娴</a>
+                                </li>
+                                <li class="btn-item">
+                                    <a href="#" class="link">十二生肖</a>
+                                </li>
+                                <li class="btn-item">
+                                    <a href="#" class="link">三体</a>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 演唱会 -->
+        <div class="panel panel-primary bg-floor">
+            <div class="w-default">
+                <div class="block-title-wrap">
+                    <div class="block-title">演唱会</div>
+                    <div class="block-title-info">
+                        <a href="#" class="info-item">周杰伦</a>
+                        <a href="#" class="info-item">毛不易</a>
+                        <a href="#" class="info-item">杨丞琳</a>
+                        <a href="#" class="info-item">许嵩</a>
+                        <a href="#" class="info-item">房东的猫</a>
+                    </div>
+                </div>
+                <div class="city-content panel-content">
+                    <ul class="list w-small w-big">
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap">
+                                <a href="#">
+                                    <img src="../static/image/yc01.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">一万天荒爱未老 周慧敏30周年演唱会</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">佛山</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">280</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap1">
+                                <a href="#">
+                                    <img src="../static/image/yc02.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">2018周杰伦地表最强2巡回演唱会泉州站 10月27日</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">泉州</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap2">
+                                <a href="#">
+                                    <img src="../static/image/yc03.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">杨丞琳“青春住了谁”巡回演唱会-杭州站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">杭州</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yc04.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【万有音乐系】“远扬十年·海角重现”岛歌王子中孝介2018巡回演唱</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">北京</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">180</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yc05.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">2018毛不易“像我这样的人”全国巡回演唱会 </a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">上海</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 第二排 -->
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap">
+                                <a href="#">
+                                    <img src="../static/image/yc06.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">三个女人的壮阔人生--三毛·齐豫·潘越云《回声》巡回演唱会2018-南</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">南京</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap1">
+                                <a href="#">
+                                    <img src="../static/image/yc07.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【演出变更】【万有音乐系】'For You为你而来'Chris Garneau克里斯</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">北京</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">180</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap2">
+                                <a href="#">
+                                    <img src="../static/image/yc08.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【万有音乐系】蓝野乐队乌兰浩特演唱会 </a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">乌兰</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">30</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yc09.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">谭咏麟银河岁月40载巡回演唱会-梧州站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">梧州</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yc10.gif" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">陈慧娴Priscilla－ism演唱会 深圳站-Encore</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">深圳</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 音乐会 -->
+        <div class="panel panel-primary">
+            <div class="w-default">
+                <div class="block-title-wrap">
+                    <div class="block-title">音乐会</div>
+                    <div class="block-title-info">
+                        <a href="#" class="info-item">宫崎骏</a>
+                        <a href="#" class="info-item">千与千寻</a>
+                        <a href="#" class="info-item">魔指爷爷</a>
+                    </div>
+                </div>
+                <div class="city-content panel-content">
+                    <ul class="list w-small w-big">
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap">
+                                <a href="#">
+                                    <img src="../static/image/yy01.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【万有音乐系】吉田潔2018音乐会・大鱼海棠篇 ---深圳站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">深圳</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">280</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap1">
+                                <a href="#">
+                                    <img src="../static/image/yy02.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【万有音乐系】“丝路狂想”马克西姆2018跨界钢琴演奏会 </a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">无锡</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap2">
+                                <a href="#">
+                                    <img src="../static/image/yy03.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【万有音乐系】“魔女宅急便”宫崎骏·久石让动漫视听系列主题音乐</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">深圳</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">80</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yy04.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">2018第二届嬉习喜戏艺术节《一个陌生女人的来信》文学朗读音乐剧</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">石家庄</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">50</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yy05.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">西班牙著名钢琴家马诺洛·卡拉斯科钢琴与小提琴音乐会-杭州站 </a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">杭州</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">80</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 音乐剧&话剧 -->
+        <div class="panel panel-primary bg-floor">
+            <div class="w-default">
+                <div class="block-title-wrap">
+                    <div class="block-title">音乐剧&话剧</div>
+                    <div class="block-title-info">
+                        <a href="#" class="info-item">cats</a>
+                        <a href="#" class="info-item">百老汇</a>
+                        <a href="#" class="info-item">老舍赶集</a>
+                        <a href="#" class="info-item">吉屋出租</a>
+                    </div>
+                </div>
+                <div class="city-content panel-content">
+                    <ul class="list w-small w-big">
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap">
+                                <a href="#">
+                                    <img src="../static/image/yj01.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">世界经典原版音乐剧《猫》Cats 北京站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">北京</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">380</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap1">
+                                <a href="#">
+                                    <img src="../static/image/yj02.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">澳大利亚当代“国宝级”喜剧《燃烧的疯人院》-深圳站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">无锡</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">99</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap2">
+                                <a href="#">
+                                    <img src="../static/image/yj03.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">开心麻花爆笑舞台剧《李茶的姑妈》广州站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">广州</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">100</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yj04.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【2018第二届嬉习喜戏艺术节】 走进经典·人鬼情未了之《焚香记》 </a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">深圳</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">80</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/yy05.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">2018第二届嬉习喜戏艺术节 方旭导演《老舍赶集》---深圳站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">深圳</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">180</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 第二排 -->
+                        <div class="list-item">
+                                <div class="item-img-wrap" id="wrap">
+                                    <a href="#">
+                                        <img src="../static/image/yj06.jpg" alt="" class="item-img">
+                                    </a>
+                                </div>
+                                <div class="item-title">
+                                    <a href="#">2018第二届嬉习喜戏艺术节 吕丽萍 孙海英主演 话剧《独自温暖》---石</a>
+                                </div>
+                                <div class="item-text">
+                                    <div class="item-detail">
+                                        <div class="item-left">
+                                            <div class="link">石家庄</div>
+                                        </div>
+                                        <div class="item-right price">
+                                            <span class="price-kind">￥</span>
+                                            <span class="price-amount">80</span>
+                                            起
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="item-img-wrap" id="wrap1">
+                                    <a href="#">
+                                        <img src="../static/image/yj07.jpg" alt="" class="item-img">
+                                    </a>
+                                </div>
+                                <div class="item-title">
+                                    <a href="#">百老汇原版音乐剧《芝加哥》(Chicago)北京站</a>
+                                </div>
+                                <div class="item-text">
+                                    <div class="item-detail">
+                                        <div class="item-left">
+                                            <div class="link">北京</div>
+                                        </div>
+                                        <div class="item-right price">
+                                            <span class="price-kind">￥</span>
+                                            <span class="price-amount">100</span>
+                                            起
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="item-img-wrap" id="wrap2">
+                                    <a href="#">
+                                        <img src="../static/image/yj03.jpg" alt="" class="item-img">
+                                    </a>
+                                </div>
+                                <div class="item-title">
+                                    <a href="#">俄罗斯柴可夫斯基芭蕾舞团《天鹅湖》-西安站</a>
+                                </div>
+                                <div class="item-text">
+                                    <div class="item-detail">
+                                        <div class="item-left">
+                                            <div class="link">西安</div>
+                                        </div>
+                                        <div class="item-right price">
+                                            <span class="price-kind">￥</span>
+                                            <span class="price-amount">180</span>
+                                            起
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="item-img-wrap" id="wrap3">
+                                    <a href="#">
+                                        <img src="../static/image/yj09.jpg" alt="" class="item-img">
+                                    </a>
+                                    
+                                </div>
+                                <div class="item-title">
+                                    <a href="#">开心麻花戏剧新体验《婿事待发》广州站</a>
+                                </div>
+                                <div class="item-text">
+                                    <div class="item-detail">
+                                        <div class="item-left">
+                                            <div class="link">广州</div>
+                                        </div>
+                                        <div class="item-right price">
+                                            <span class="price-kind">￥</span>
+                                            <span class="price-amount">100</span>
+                                            起
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-item">
+                                <div class="item-img-wrap" id="wrap3">
+                                    <a href="#">
+                                        <img src="../static/image/yj10.jpg" alt="" class="item-img">
+                                    </a>
+                                    
+                                </div>
+                                <div class="item-title">
+                                    <a href="#">陕西人艺版话剧《平凡的世界》</a>
+                                </div>
+                                <div class="item-text">
+                                    <div class="item-detail">
+                                        <div class="item-left">
+                                            <div class="link">深圳</div>
+                                        </div>
+                                        <div class="item-right price">
+                                            <span class="price-kind">￥</span>
+                                            <span class="price-amount">180</span>
+                                            起
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 儿童剧 -->
+        <div class="panel panel-primary">
+            <div class="w-default">
+                <div class="block-title-wrap">
+                    <div class="block-title">儿童剧</div>
+                    <div class="block-title-info">
+                        <a href="#" class="info-item">白雪公主</a>
+                        <a href="#" class="info-item">飞行学校</a>
+                        <a href="#" class="info-item">小红帽</a>
+                        <a href="#" class="info-item">朵拉</a>
+                        <a href="#" class="info-item">小王子</a>
+                        <a href="#" class="info-item">绿野仙踪</a>
+                    </div>
+                </div>
+                <div class="city-content panel-content">
+                    <ul class="list w-small w-big">
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap">
+                                <a href="#">
+                                    <img src="../static/image/ee01.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【小橙堡】奇幻亲子音乐剧《绿野仙踪》---哈尔滨站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">哈尔滨</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">60</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap1">
+                                <a href="#">
+                                    <img src="../static/image/ee02.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【微剧场399元家庭季度套票项目】 奥地利 风情歌舞偶剧《月光下的</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">重庆</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">180</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap2">
+                                <a href="#">
+                                    <img src="../static/image/ee03.jpg" alt="" class="item-img">
+                                </a>
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【小橙堡】寻梦亲子音乐剧《Flight School飞行学校》--天津站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">天津</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">88</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/ee04.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【小橙堡·微剧场】以色列创意人偶互动剧《私人订制》-深圳站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">深圳</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">180</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="item-img-wrap" id="wrap3">
+                                <a href="#">
+                                    <img src="../static/image/ee05.jpg" alt="" class="item-img">
+                                </a>
+                                
+                            </div>
+                            <div class="item-title">
+                                <a href="#">【小橙堡】梦幻互动亲子剧《人鱼公主》成都站</a>
+                            </div>
+                            <div class="item-text">
+                                <div class="item-detail">
+                                    <div class="item-left">
+                                        <div class="link">成都</div>
+                                    </div>
+                                    <div class="item-right price">
+                                        <span class="price-kind">￥</span>
+                                        <span class="price-amount">50</span>
+                                        起
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="clear"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="mini_foot">
+            <p>Copyright 2018.9 © DLSZ网 Java班 第三小组</p>
+        </div>
+    </footer>
+</body>
+<script type="text/javascript">
+//小模块
+var wrap = document.getElementById("wrap");
+var info = document.getElementById("info");
+var wrap1 = document.getElementById("wrap1");
+var info1 = document.getElementById("info1");
+
+var wrap2 = document.getElementById("wrap2");
+var info2 = document.getElementById("info2");
+var wrap3 = document.getElementById("wrap3");
+var info3 = document.getElementById("info3");
+
+wrap.onmouseover= function(){
+    info.classList.add("item-img-info-active");
+}
+wrap.onmouseout= function(){
+    info.setAttribute("class","item-img-info")
+}
+
+wrap1.onmouseover= function(){
+    info1.classList.add("item-img-info-active");
+}
+wrap1.onmouseout= function(){
+    info1.setAttribute("class","item-img-info")
+}
+wrap2.onmouseover= function(){
+    info2.classList.add("item-img-info-active");
+}
+wrap2.onmouseout= function(){
+    info2.setAttribute("class","item-img-info")
+}
+wrap3.onmouseover= function(){
+    info3.classList.add("item-img-info-active");
+}
+wrap3.onmouseout= function(){
+    info3.setAttribute("class","item-img-info")
+}
+
+
+
+//轮播图
+var scroll = document.getElementById("scroll"); // 获得大盒子
+    var box = document.getElementById("box");
+    var ul = document.getElementById("ul"); // 获得ul
+    var ulLis = ul.children;// 获得ul的盒子 以此来生成ol中li的个数
+    var liWidth = ul.children[0].offsetWidth;// 获得每个li的宽度
+    // console.log(liWidth)
+    ul.appendChild(ul.children[0].cloneNode(true));
+
+    // 2.创建ol 和li
+    var ol = document.createElement("ol");//创建ol元素
+    var olLis = ol.children;
+    box.appendChild(ol);// 把ol放到scroll盒子里面去
+    for (var i=0;i<ulLis.length-1;i++) {
+        var li = document.createElement("li");// 创建li元素
+        ol.appendChild(li);// 将li元素添加到ol里面
+    }
+    ol.children[0].className = "current";
+
+    function animate(obj,target){
+        clearInterval(obj.timer);
+        // console.log((obj.offsetLeft/-1200)-4+6);
+        var w = (obj.offsetLeft/-1200)-4+6;
+        if(w == 2){
+            scroll.style.backgroundColor = "#54484d";
+        }
+        if(w == 3){
+            scroll.style.backgroundColor = "#040404";
+        }
+        if(w == 4){
+            scroll.style.backgroundColor = "#eef3e8";
+        }
+        if(w == 5){
+            scroll.style.backgroundColor = "black";
+        }
+        if(w == 6){
+            scroll.style.backgroundColor = "black";
+        }
+        var speed = obj.offsetLeft < target ? 20 : -20;
+
+        obj.timer = setInterval(function(){
+            var result = target - obj.offsetLeft;
+            obj.style.left = obj.offsetLeft + speed + "px";
+            // 有可能有小数的存在，所以在这里要做个判断             
+            if (Math.abs(result) <= Math.abs(speed)) {
+                clearInterval(obj.timer);
+                obj.style.left = target + "px";
+            }
+        },7);
+    }
+    
+    var timer = null; // 轮播图的定时器
+    var key = 0;// 控制播放的张数
+    var circle = 0;// 控制小圆点
+    var su = 3000;
+   
+
+    timer = setInterval(autoplay,su);// 自动轮播
+    function autoplay(){
+        // console.log(su)
+        key++; // 先++
+        if(key > ulLis.length-1){// 后判断
+
+            ul.style.left = 0; // 迅速调回
+            key = 1; // 因为第6张是第一张，所以播放的时候是从第2张开始播放
+        }
+        // 动画部分
+        animate(ul,-key*liWidth);
+
+        circle++;
+        if (circle > olLis.length-1) {
+            circle = 0;
+        }
+        // 小圆点颜色发生变化
+        for (var i = 0 ; i < olLis.length;i++) {
+            olLis[i].className = ""; 
+        }
+        olLis[circle].className = "current";
+
+    }
+
+    // 上下轮播图
+    var prev = document.getElementById("prev");
+    var next = document.getElementById("next");
+
+    // console.log(prev)
+    prev.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(autoplay,1000)
+        console.log("qwe")
+        key = key-2;
+        circle = circle-2;
+    }
+    prev.onmouseout = function(){
+        
+        clearInterval(timer);
+        timer = setInterval(autoplay,3000)
+    }
+    next.onclick = function(){
+        clearInterval(timer);
+        timer = setInterval(autoplay,1000)
+        console.log("qwe")
+        key = key+0;
+        circle = circle+0;
+    }
+    next.onmouseout = function(){
+        
+        clearInterval(timer);
+        timer = setInterval(autoplay,3000)
+    }
+
+
+
+
+//导航
+    var yc = document.getElementById("yanchang");
+    var yy = document.getElementById("yy");
+    var gj = document.getElementById("gj");
+    var et = document.getElementById("et");
+    
+
+
+
+    var kind = document.getElementById("kind")
+    var right = document.getElementById("right");
+    var r1 = document.getElementById("r1");
+    var r2 = document.getElementById("r2");
+    var r3 = document.getElementById("r3");
+    var r4 = document.getElementById("r4");
+    var rr = [r1,r2,r3,r4];
+
+    //经过各个标签
+
+
+
+    yc.onmouseover = function(){
+        right.classList.add("active");
+        r1.classList.add("active");
+        kind.classList.add("xian");
+    }
+    yc.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r1.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    yy.onmouseover = function(){
+        right.classList.add("active");
+        r2.classList.add("active");
+        kind.classList.add("xian");
+    }
+    yy.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r2.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    gj.onmouseover = function(){
+        right.classList.add("active");
+        r3.classList.add("active");
+        kind.classList.add("xian");
+    }
+    gj.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r3.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    et.onmouseover = function(){
+        right.classList.add("active");
+        r4.classList.add("active");
+        kind.classList.add("xian");
+    }
+    et.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r4.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    //经过各个子栏
+    
+    // console.log(rr);
+    for( i=0; i<rr.length; i++){
+        rr[i].onmouseover = function(){
+            right.classList.add("active");
+            this.classList.add("active");
+        kind.classList.add("xian");
+        }
+        rr[i].onmouseout = function(){
+            right.setAttribute("class","right-detail")
+            this.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+        }
+    }
+
+
+
+
+
+
+        
+</script>
+</html>
