@@ -1,8 +1,14 @@
 package com.super223.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.super223.mapper.CustomMapper;
+import com.super223.mapper.HotwordMapper;
 import com.super223.mapper.TicketMapper;
+import com.super223.mapper.TypeMapper;
+import com.super223.model.Hotword;
 import com.super223.model.Ticket;
 import com.super223.service.TicketService;
+import com.super223.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
@@ -11,10 +17,13 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.util.StringUtils;
 import sun.misc.IOUtils;
+import tk.mybatis.mapper.entity.Example;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -26,6 +35,15 @@ public class TicketServiceImpl implements TicketService {
 
     @Autowired
     private TicketMapper ticketMapper;
+
+    @Autowired
+    private HotwordMapper hotwordMapper;
+
+    @Autowired
+    private CustomMapper customMapper;
+
+    @Autowired
+    private TypeMapper typeMapper;
 
     @Value("classpath:static/json/ticketInfo.json")
     private Resource resource;
@@ -57,7 +75,7 @@ public class TicketServiceImpl implements TicketService {
             t.setMerchantid(merchantid);
 
             String showtime = ticket.getString("showtime").replaceAll("-", ".");
-            if (!ticket.isNull("showtime") && !"".equals(ticket.getString("showtime")) && Character.isDigit(showtime.charAt(0))&& Character.isDigit(showtime.charAt(1))&& Character.isDigit(showtime.charAt(2))&& Character.isDigit(showtime.charAt(3)) && !isChinese(showtime.substring(0,9))) {
+            if (!ticket.isNull("showtime") && !"".equals(ticket.getString("showtime")) && Character.isDigit(showtime.charAt(0))&& Character.isDigit(showtime.charAt(1))&& Character.isDigit(showtime.charAt(2))&& Character.isDigit(showtime.charAt(3)) && !StringUtil.isChinese(showtime.substring(0,9))) {
                 int firstDot = showtime.indexOf('.');
                 int secondDot = showtime.indexOf('.', firstDot+1);
                 int year = Integer.parseInt(showtime.substring(0, firstDot));
@@ -68,7 +86,6 @@ public class TicketServiceImpl implements TicketService {
                 } else {
                     day = Integer.parseInt(showtime.substring(secondDot+1, secondDot+2));
                 }
-
                 t.setEndTime(LocalDate.of(year, month, day));
                 t.setStartTime(LocalDate.of(year, month, day));
             }
@@ -142,32 +159,117 @@ public class TicketServiceImpl implements TicketService {
             if (!ticket.isNull("venue") && !"".equals(ticket.getString("venue"))) {
                 t.setVenue(ticket.getString("venue"));
             }
+            if (!ticket.isNull("projectid") && !"".equals(ticket.getString("projectid"))) {
+                t.setProjectid(ticket.getString("projectid"));
+            }
+            if (!ticket.isNull("price_str") && !"".equals(ticket.getString("price_str"))) {
+                t.setPriceStr(ticket.getString("price_str"));
+            }
             // 将数据插入数据库
             ticketMapper.insertSelective(t);
         }
     }
 
-    /**
-     *判断一个字符是否是中文
-     */
-    public static boolean isChinese(char c) {
-        // 根据字节码判断
-        return c >= 0x4E00 &&  c <= 0x9FA5;
+    @Override
+    public List<Ticket> getAllTicket(Integer page, Integer pageSize) {
+
+        // 使用PageHelper进行分页
+        PageHelper.startPage(page, pageSize);
+        return ticketMapper.selectAll();
     }
 
-    /**
-     *判断一个字符串是否含有中文
-     */
-    public static boolean isChinese(String str) {
-        if (str == null) {
-            return false;
+    @Override
+    public List<Ticket> getTicketByName(String name) {
+        Example example = new Example(Ticket.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        if (!StringUtils.isEmptyOrWhitespace(name)){
+            criteria.andLike("name", "%" + name + "%");
         }
-        for (char c : str.toCharArray()) {
-            if (isChinese(c)) {
-                // 有一个中文字符就返回
-                return true;
-            }
-        }
-        return false;
+
+        List<Ticket> ticketList = ticketMapper.selectByExample(example);
+        return ticketList;
     }
+
+    @Override
+    public List<Ticket> getTicketByCondition(Ticket ticket) {
+
+        Example example = new Example(Ticket.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmptyOrWhitespace(ticket.getName())) {
+            criteria.andLike("name", "%" + ticket.getName() + "%");
+        }
+        if(!StringUtils.isEmptyOrWhitespace(ticket.getCityname())) {
+            criteria.andEqualTo("cityname", ticket.getCityname());
+        }
+        if (!StringUtils.isEmptyOrWhitespace(ticket.getCategoryname())) {
+            criteria.andEqualTo("categoryname", ticket.getCategoryname());
+        }
+        if (ticket.getStartTime() != null) {
+            criteria.andLessThan("startTime", ticket.getStartTime());
+            criteria.orEqualTo("startTime", null);
+        }
+
+        return ticketMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<Hotword> getHotWordByNum(Integer num) {
+        PageHelper.startPage(1, num);
+        Example example = new Example(Hotword.class);
+        example.setOrderByClause("count desc");
+        return hotwordMapper.selectByExample(example);
+    }
+
+    @Override
+    public Hotword getHotWordByName(String name) {
+        Example example = new Example(Hotword.class);
+        Example.Criteria criteria = example.createCriteria();
+
+        if (!StringUtils.isEmptyOrWhitespace(name)){
+            criteria.andEqualTo("name", name);
+        }
+
+        return hotwordMapper.selectOneByExample(example);
+    }
+
+    @Override
+    public void addHotWord(Hotword hotword) {
+        hotwordMapper.insert(hotword);
+    }
+
+    @Override
+    public void updateHotWord(Hotword hotword) {
+        hotwordMapper.updateByPrimaryKeySelective(hotword);
+    }
+
+    @Override
+    public List<String> getAllCity() {
+        return customMapper.getAllAddress();
+    }
+
+    @Override
+    public List<String> getAllType() {
+        return customMapper.getAllType();
+    }
+
+    @Override
+    public List<Ticket> getTopByClick() {
+
+        Example example = new Example(Ticket.class);
+        example.setOrderByClause("click desc,purchase desc");
+
+        return ticketMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<String> getCityByKeyWord(String key) {
+        return customMapper.getCityByKeyWord(key);
+    }
+
+    @Override
+    public List<String> getTypeByKeyWord(String key) {
+        return customMapper.getTypeByKeyWord(key);
+    }
+
 }

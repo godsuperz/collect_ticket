@@ -26,7 +26,7 @@
         
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.super223.mapper" targetProject="src/main/java"/>
 
-        <table tableName="ticket">
+        <table tableName="type">
             <generatedKey column="id" sqlStatement="Mysql"/>
         </table>
     </context>

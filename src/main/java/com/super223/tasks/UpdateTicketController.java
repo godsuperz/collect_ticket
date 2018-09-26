@@ -22,7 +22,6 @@ public class UpdateTicketController {
     @GetMapping("/updateTicket")
     public String  updateTicket(){
         try {
-            int merchantid = 0;
             ticketService.addTicket(1);
         } catch (IOException e) {
             e.printStackTrace();

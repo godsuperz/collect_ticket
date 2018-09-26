@@ -1,6 +1,7 @@
 package com.super223.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.*;
 
 public class Ticket {
@@ -143,6 +144,17 @@ public class Ticket {
      * 场馆
      */
     private String venue;
+
+    /**
+     * 搜索项目id
+     */
+    private String projectid;
+
+    /**
+     * 价格区间
+     */
+    @Column(name = "price_str")
+    private String priceStr;
 
     /**
      * 获取票务id
@@ -630,36 +642,39 @@ public class Ticket {
         this.venue = venue;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", merchantid=" + merchantid +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", state=" + state +
-                ", count=" + count +
-                ", introduction='" + introduction + '\'' +
-                ", audit=" + audit +
-                ", click=" + click +
-                ", purchase=" + purchase +
-                ", img='" + img + '\'' +
-                ", actors='" + actors + '\'' +
-                ", categoryname='" + categoryname + '\'' +
-                ", cityname='" + cityname + '\'' +
-                ", iseticket=" + iseticket +
-                ", isgeneralagent=" + isgeneralagent +
-                ", issuperticket=" + issuperticket +
-                ", isxuanzuo=" + isxuanzuo +
-                ", namenohtml='" + namenohtml + '\'' +
-                ", pricehigh=" + pricehigh +
-                ", showstatus='" + showstatus + '\'' +
-                ", showtag='" + showtag + '\'' +
-                ", showtime='" + showtime + '\'' +
-                ", subcategoryname='" + subcategoryname + '\'' +
-                ", venue='" + venue + '\'' +
-                '}';
+    /**
+     * 获取搜索项目id
+     *
+     * @return projectid - 搜索项目id
+     */
+    public String getProjectid() {
+        return projectid;
+    }
+
+    /**
+     * 设置搜索项目id
+     *
+     * @param projectid 搜索项目id
+     */
+    public void setProjectid(String projectid) {
+        this.projectid = projectid;
+    }
+
+    /**
+     * 获取价格区间
+     *
+     * @return price_str - 价格区间
+     */
+    public String getPriceStr() {
+        return priceStr;
+    }
+
+    /**
+     * 设置价格区间
+     *
+     * @param priceStr 价格区间
+     */
+    public void setPriceStr(String priceStr) {
+        this.priceStr = priceStr;
     }
 }

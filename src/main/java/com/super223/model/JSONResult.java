@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  *
- * @Title: IMoocJSONResult.java
+ * @Title: JSONResult.java
  * @Package com.superz.pojo
  * @Description: 自定义响应数据结构
  * 				这个类是提供给门户，ios，安卓，微信商城用的
@@ -25,34 +25,52 @@ import java.util.List;
  * @date 2018年9月2日 上午11:28:00
  * @version V1.0
  */
-public class IMoocJSONResult {
+public class JSONResult {
 
-    // 定义jackson对象
+    /**
+     * 定义jackson对象
+     */
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    // 响应业务状态
+    /**
+     * 响应业务状态
+     */
     private Integer status;
 
-    // 响应消息
+    /**
+     * 响应消息
+     */
     private String msg;
 
-    // 响应中的数据
+    /**
+     * 响应中的数据
+     */
     private Object data;
 
-    private String ok; // 不使用
+    /**
+     * data的条数
+     */
+    private Integer number;
 
-    public IMoocJSONResult() {
+    public JSONResult() {
     }
 
-    public IMoocJSONResult(Object data) {
+    public JSONResult(Object data) {
         this.status = 200;
         this.msg = "OK";
         this.data = data;
     }
 
-    public IMoocJSONResult(Integer status, String msg, Object data) {
+    public JSONResult(Integer status, String msg, Object data) {
         this.status = status;
         this.msg = msg;
+        this.data = data;
+    }
+
+    public JSONResult(Object data, Integer number) {
+        this.number = number;
+        this.status = 200;
+        this.msg = "OK";
         this.data = data;
     }
 
@@ -80,44 +98,48 @@ public class IMoocJSONResult {
         this.data = data;
     }
 
-    public String getOk() {
-        return ok;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setOk(String ok) {
-        this.ok = ok;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public boolean isOK(){
         return this.status == 200;
     }
 
-    public static IMoocJSONResult build(Integer status, String msg, Object data){
-        return new IMoocJSONResult(status, msg, data);
+    public static JSONResult build(Integer status, String msg, Object data){
+        return new JSONResult(status, msg, data);
     }
 
-    public static IMoocJSONResult ok(Object data){
-        return new IMoocJSONResult(data);
+    public static JSONResult ok(Object data){
+        return new JSONResult(data);
     }
 
-    public static IMoocJSONResult ok(){
-        return new IMoocJSONResult(null);
+    public static JSONResult ok(Object data, Integer number){
+        return new JSONResult(data, number);
     }
 
-    public static IMoocJSONResult errorMsg(String msg){
-        return new IMoocJSONResult(500, msg, null);
+    public static JSONResult ok(){
+        return new JSONResult(null);
     }
 
-    public static IMoocJSONResult errorMap(Object data){
-        return new IMoocJSONResult(501, "error", data);
+    public static JSONResult errorMsg(String msg){
+        return new JSONResult(500, msg, null);
     }
 
-    public static IMoocJSONResult errorTokenMsg(String msg){
-        return new IMoocJSONResult(502, msg, null);
+    public static JSONResult errorMap(Object data){
+        return new JSONResult(501, "error", data);
     }
 
-    public static IMoocJSONResult errorException(String msg){
-        return new IMoocJSONResult(555, msg, null);
+    public static JSONResult errorTokenMsg(String msg){
+        return new JSONResult(502, msg, null);
+    }
+
+    public static JSONResult errorException(String msg){
+        return new JSONResult(555, msg, null);
     }
 
     /**
@@ -131,10 +153,10 @@ public class IMoocJSONResult {
      * @author SuperZ
      * @date 2018年9月2日 上午11:28:00
      */
-    public static IMoocJSONResult formatToPojo(String jsonData, Class<?> clazz){
+    public static JSONResult formatToPojo(String jsonData, Class<?> clazz){
         try {
             if (clazz == null) {
-                return MAPPER.readValue(jsonData, IMoocJSONResult.class);
+                return MAPPER.readValue(jsonData, JSONResult.class);
             }
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");
@@ -161,9 +183,9 @@ public class IMoocJSONResult {
      * @author SuperZ
      * @date 2018年9月2日 上午11:28:00
      */
-    public static IMoocJSONResult format(String json) {
+    public static JSONResult format(String json) {
         try {
-            return MAPPER.readValue(json, IMoocJSONResult.class);
+            return MAPPER.readValue(json, JSONResult.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -181,7 +203,7 @@ public class IMoocJSONResult {
      * @author SuperZ
      * @date 2018年9月2日 上午11:28:00
      */
-    public static IMoocJSONResult formatToList(String jsonData, Class<?> clazz) {
+    public static JSONResult formatToList(String jsonData, Class<?> clazz) {
         try {
             JsonNode jsonNode = MAPPER.readTree(jsonData);
             JsonNode data = jsonNode.get("data");

@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="../static/css/geren.css">
+    <link rel="stylesheet" th:href="@{/static/css/shouye.css}" href="../static/css/shouye.css">
+    <link rel="stylesheet" th:href="@{/static/css/sousuo.css}" href="../static/css/sousuo.css">
+    <title>DLSZ-演出票搜索</title>
+</head>
+<body>
+<a name="top"></a>
+    <header>
+        <!-- 顶部栏 -->
+        <div class="new-navbar">
+            <div class="w1200">
+                <div class="slogan">文化青年，品质生活~</div>
+
+
+                <div class="nav-top">
+                    <!-- 未登录 -->
+
+
+                    <!-- 已登录 -->
+                    <th:block th:if="1 eq 0">
+                        <div class="nav-items">
+                            <a id="js-get-username" class="nav-link no-border-left" href="user/myorderlist.html" target="_black">你好, DLSZ</a>
+                        </div>
+                        <div class="nav-items">
+                            <a class="nav-link c9" href="user/denglu.html">退出</a>
+                        </div>
+                    </th:block>
+                    <th:block th:if="1 eq 1">
+                        <div class="nav-items">
+                            <a id="login" class="nav-link no-border-left" th:href="@{/User/login}" href="user/myorderlist.html">登录</a>
+                        </div>
+                        <div class="nav-items">
+                            <a class="nav-link" th:href="@{/User/register}">注册</a>
+                        </div>
+                    </th:block>
+                    <!-- 已登陆END -->
+
+
+                    <div class="nav-items">
+                        <a class="nav-link" href="myorderlist.html">我的订单</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="new-header new-shadow">
+            <div class="w1200 content-box">
+                <div class="shouye">
+                    <a th:href="@{/}">DLSZ</a>
+                </div><!-- 
+                --><div class="search-box">
+                    <div class="search-bar">
+                        <div class="search-input">
+                            <input id="inp" class="js-search" type="text" th:value="${key}">
+                        </div><!-- 
+                         --><div class="search-btn" id="sou">
+                            <i></i>
+
+                         </div>
+                        <ul class="search-result" id="cha">
+                        <!--<li class="result-items">
+                            <a href="#" target="_blank" class="result-link">
+                                北京
+                                <span class="key-word">小</span>
+                                小柯音乐剧“爱情三部曲”之二《等你爱我》
+                            </a>
+                        </li>-->
+                    </ul>
+                    </div>
+                    <div class="hot-search">
+                        <ul id="hotWord">
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+            <div class="nav-head">
+                <ul class="w1200 hei">
+                    <li class="nav-item">
+                        <a th:href="@{/search}" class="nav-link">全部商品分类</a>
+                        <!-- 侧边导航 -->
+                        <!--<div class="kind-list" id="kind">
+                            <div class="left-index">
+                                <a class="kind-link" id="yanchang" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon"></i>
+                                    <span class="kind-text">演唱会</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" id="yy" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon2"></i>
+                                    <span class="kind-text">音乐会</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" id="gj" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon3"></i>
+                                    <span class="kind-text">话剧歌剧</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" id="et" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon4"></i>
+                                    <span class="kind-text">休闲度假</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon5"></i>
+                                    <span class="kind-text">舞蹈芭蕾</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon6"></i>
+                                    <span class="kind-text">曲苑杂坛</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon7"></i>
+                                    <span class="kind-text">体育比赛</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                            </div>
+                            <div class="right-detail" id="right">
+                                <div class="kind-details" id="r1" style="background-image: url(../static/image/i1.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            流行
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>摇滚
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>民谣
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>民族
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="kind-details" id="r2" style="background-image: url(../static/image/yy.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            交响
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>独奏
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kind-details" id="r3" style="background-image: url(../static/image/gj.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            话剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>歌剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>歌舞剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kind-details" id="r4" style="background-image: url(../static/image/et.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            儿童剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>亲子活动
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=演唱会" class="nav-link">演唱会</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=舞蹈芭蕾" class="nav-link">舞蹈芭蕾</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=话剧歌剧" class="nav-link">话剧歌剧</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=曲苑杂坛" class="nav-link">曲苑杂坛</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=音乐会" class="nav-link">音乐会</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=体育比赛" class="nav-link">体育比赛</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=度假休闲" class="nav-link">度假休闲</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=周边商品" class="nav-link">周边商品</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="body-box">
+        <div class="w1200">
+            <div class="search-filter mt20">
+                <div class="filter">
+                    <div class="filter-item" id="filter-address-item">
+                        <div class="filter-name">城市：</div>
+                        <div class="filter-all">
+                            <a href="javascript:void(0)" class="on cityItem">全部</a><!--
+                             --><span class="line">|</span>
+                        </div>
+                        <div class="filter-con" >
+                            <th:block th:each="address,iterStat : ${addressList}">
+                                <a th:if="${iterStat.index} lt 23" href="javascript:void(0)" class="cityItem" th:text="${address}"></a><!--
+                                --><span th:if="${iterStat.index} lt 23" class="line">|</span>
+                                <a th:if="${iterStat.index} ge 23" href="javascript:void(0)" class="cityItem" th:text="${address}" style="display: none"></a><!--
+                                --><span th:if="${iterStat.index} ge 23" class="line" style="display: none" >|</span>
+                            </th:block>
+                            <a href="javascript:void(0)" class="filter-more">&gt;&gt;</a>
+                        </div>
+                    </div> 
+                    <div class="filter-item" id="filter-category-item">
+                        <div class="filter-name">类型：</div>
+                        <div class="filter-all">
+                            <a th:if="${#strings.isEmpty(searchType)}" href="javascript:void(0)" class="on typeItem">全部</a>
+                            <a th:unless="${#strings.isEmpty(searchType)}" href="javascript:void(0)" class="typeItem">全部</a><!--
+                             --><span class="line">|</span>
+                        </div>
+                        <div class="filter-con">
+                            <input id="typeBind" type="hidden" th:value="${searchType}">
+                            <th:block th:each="type : ${typeList}">
+
+                                <a th:if="${type eq searchType}" href="javascript:void(0)" class="typeItem on" th:text="${type}"></a>
+                                <a th:unless="${type eq searchType}" href="javascript:void(0)" class="typeItem" th:text="${type}"></a><!--
+                                --><span class="line">|</span>
+                            </th:block>
+                        </div>
+                    </div>
+                    <div class="filter-item" id="filter-time-item">
+                        <div class="filter-name">时间：</div>
+                        <div class="filter-all">
+                            <a href="#" class="on timeItem">全部</a><!--
+                             --><span class="line">|</span>
+                        </div>
+                        <div class="filter-con">
+                            <a href="javascript:void(0)" class="timeItem">一周内</a><!--
+                            --><span class="line">|</span>
+                            <a href="javascript:void(0)" class="timeItem">一个月内</a><!--
+                            --><span class="line">|</span>
+                            <a href="javascript:void(0)" class="timeItem">三个月内</a><!--
+                            --><span class="line">|</span>
+                            <a href="javascript:void(0)" class="timeItem">12月</a><!--
+                            --><span class="line">|</span>
+                            <a href="javascript:void(0)" class="timeItem">明年</a><!--
+                            --><span class="line">|</span>
+                        </div>
+                    </div>
+                    <!--<div class="filter-item">
+                        <div class="filter-name" style="border:none">优惠：</div>
+                        <ul class="yh">
+                            <li>
+                                <a href="#">
+                                    <input name="state" value="0" type="hidden" class="hidden" id="input">
+                                    <label class="yhl">
+                                        <span class="s-checkbox yh-check" type="check-box" name="special" valve="0" id="check"></span>
+                                        DLSZ主办
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input name="state" value="0" type="hidden" class="hidden" id="input1">
+                                    <label class="yhl">
+                                        <span class="s-checkbox yh-check" type="check-box" name="special" valve="0" id="check1"></span>
+                                        在线选座
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input name="state" value="0" type="hidden" class="hidden" id="input2">
+                                    <label class="yhl">
+                                        <span class="s-checkbox yh-check" type="check-box" name="special" valve="0" id="check2"></span>
+                                        电子票
+                                    </label>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <input name="state" value="0" type="hidden" class="hidden" id="input3">
+                                    <label class="yhl">
+                                        <span class="s-checkbox yh-check" type="check-box" name="special" valve="0" id="check3"></span>
+                                        在线选座
+                                    </label>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>-->
+                </div>
+                <div class="push">
+                    <div class="s-groom">
+                        <h4>大家都在找：</h4>
+                        <div class="groomjs">
+                            <div class="s-groomc">
+                                <li class="hide" id="everyoneLookForDesc">
+                                    <!--<a href="javascript:void(0)" class="img" style="background-image: url(../static/image/cat.jpg)">
+                                        <p>
+                                                &lt;!&ndash;世界经典原版音乐剧《猫》Cats 北京站&ndash;&gt;
+                                        </p>
+                                    </a>-->
+                                    <!--<div class="info">-->
+                                        <!--<p>时　间：2018.09.25 19:30 </p>-->
+                                        <!--<p>票　价：-->
+                                            <!--<span class="rmb">￥</span>-->
+                                            <!--<span class="num">100</span>-->
+                                            <!--<span class="qi">起</span>-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-resault mt20">
+                <div class="result-left">
+                    <div class="sortbar clearfix">
+                        <ul class="switch-btns">
+                            <li class="txt"></li>
+                            <div class="fadetabSearch">
+                                <li>
+                                    <!--class="icon-switch-grid"-->
+                                    <a href="javascript:void(0)"><span ></span></a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)" class="active"><span class="icon-switch-list"></span></a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>  
+                    <div class="fadeconSearch">
+                        <div id="tab_box2" class="tabbox02 list-box">
+                            <div class="listprod">
+                                <div class="ticketList"></div>
+                                <!--<div class="collect-item" value="小野丽莎">
+                                    <div class="clit-img" style="background-image:url(../static/image/s01.jpg)"></div>
+                                    <div class="clit-info">
+                                        <h3>
+                                            <a href="#">    
+                                                【万有音乐系】
+                                                <span class="high-light-text">小野丽莎</span>
+                                                2018巡回演唱会-&#45;&#45;成都站
+                                            </a>
+                                        </h3>
+                                        <p class="lisa">时 间：2018.12.21 19:30</p>
+                                        <p class="lisa">场 馆： [成都] 锦城艺术宫</p>
+                                        <p class="lisa">
+                                            票价：
+                                            <span class="rmb">￥</span>
+                                            <span class="num">280~1280</span>
+                                        </p>
+                                        <p class="support"></p>
+                                        <div class="ct">  
+                                            <span class="tag">
+                                                <a href="#">在线选座</a>
+                                            </span>
+                                            <span class="tag">
+                                                <a href="#">电子票</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="clit-btn">
+                                        <span>
+                                            <a href="#" class="btn bg-fe5d36">立即购票</a>
+                                        </span>
+                                        <span class="f-atten">
+                                            <a href="#" class="btn">
+                                                <i class="yen">+</i>
+                                                关注
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>-->
+                                <div class="collect-item collect-item-btn">
+                                    <div>
+                                        <a href="javascript:void(0)" class="btn" id="checkMoreBtn">加载更多</a>
+                                        <!--<a href="#" class="btn bg-fe5d36">上一页</a>
+                                        <a href="#" class="btn">1</a>
+                                        <a href="#" class="btn">2</a>
+                                        <a href="#" class="btn">3</a>
+                                        <a href="#" class="btn">4</a>
+                                        <a href="#" class="btn bg-fe5d36">下一页</a>-->
+                                    </div>
+
+                                    <div class="clear"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-right">
+                    <div class="bline show-news show-act">
+                        <h4 class="news-title">
+                            最新资讯
+                            <div class="title-after">
+                                <a href="javascript:void(0)")>更多</a>
+                            </div>
+                        </h4>
+                        <div class="news-info">
+                            <a href="javascript:void(0)" class="img-link"></a>
+                            <div class="title">
+                                <a href="javascript:void(0)" class="link">2018年10月上海演唱会排期大全 上海10月份有哪些演唱会安排</a>
+                            </div>
+                        </div>
+                        <div class="news-inner">
+                            <ul class="news-list">
+                                <li class="item">
+                                    <a href="javascript:void(0)" class="link"><span class="bullets"></span>热斑巡演倒计时，内附活动福</a>
+                                </li>
+                                <li class="item">
+                                    <a href="javascript:void(0)" class="link"><span class="bullets"></span>你的冻龄女神周慧敏再次上线</a>
+                                </li>
+                                <li class="item">
+                                    <a href="javascript:void(0)" class="link"><span class="bullets"></span>杭州开演 | 对于这部走心的RE</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bline show-news show-act">
+                        <h4 class="news-title">
+                            精彩专题
+                            <div class="title-after">
+                                <a href="javascript:void(0)">更多</a>
+                            </div>
+                        </h4>
+                        <div class="news-info">
+                            <a href="javascript:void(0)" class="img-linkt"></a>
+                            <div class="title">
+                                <a href="javascript:void(0)" class="link">DLSZ分享家，分享演出赚佣金</a>
+                            </div>
+                        </div>
+                        <div class="news-inner">
+                            <ul class="news-list">
+                                <li class="item">
+                                    <a href="javascript:void(0)" class="link"><span class="bullets"></span>2018第二届嬉习喜戏艺术节</a>
+                                </li>
+                                <li class="item">
+                                    <a href="javascript:void(0)" class="link"><span class="bullets"></span>那些动人的故事</a>
+                                </li>
+                                <li class="item">
+                                    <a href="javascript:void(0)" class="link"><span class="bullets"></span>招商银行信用卡购票专享</a>
+                                </li>
+                                <li class="item">
+                                    <a href="javascript:void(0)" class="link"><span class="bullets"></span>DLSZ剧场演出季</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <footer>
+        <div class="mini_foot">
+            <p>Copyright 2018.9 © DLSZ网 Java班 第三小组</p>
+        </div>
+    </footer>
+    <div class="sidebar">
+        <div class="item">
+            <a href="#top">
+                <a href="#" class="gotop"></a>
+                <p>返回顶部</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+
+<script th:src="@{/static/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/static/js/search.js}"></script>
+<script th:src="@{/static/js/index.js}"></script>
+
+<script>
+    // console.log(document.getElementsByClassName("clit-img"))
+
+    // 显示符合搜索条件的标签
+    //  var sou = document.getElementById("sou");
+    //  var shu = document.getElementById("shu");
+    //  var sval = shu.value;
+    //  var colls = document.getElementsByClassName("collect-item");
+    // //  console.log(sou)
+    // //  console.log(shu)
+    //  sou.onclick = function(){
+    //     location.reload(); 
+    //     for(var i =0; i<colls.length; i++){
+    //         var ss = colls[i].getAttribute("value");
+    //         console.log(sval)
+    //         if(sval == ss){
+    //             colls[i].classList.add("collect-item-ac")
+    //             console.log(colls[i])
+    //         }
+    //     }
+         
+    //  }
+
+    
+
+
+    // var check = document.getElementById("check");
+    // var val = document.getElementById("input").getAttribute("value");
+    // check.onclick=function(){
+    //
+    //     if(val == 0){
+    //         check.classList.add("aactive");
+    //         val = 1;
+    //     }
+    //     else if(val == 1){
+    //         check.setAttribute("class","s-checkbox yh-check")
+    //         val = 0;
+    //     }
+    // }
+    // var check1 = document.getElementById("check1");
+    // var val1 = document.getElementById("input1").getAttribute("value");
+    // check1.onclick=function(){
+    //
+    //     if(val1 == 0){
+    //         check1.classList.add("aactive");
+    //         val1 = 1;
+    //     }
+    //     else if(val1 == 1){
+    //         check1.setAttribute("class","s-checkbox yh-check")
+    //         val1 = 0;
+    //     }
+    // }
+    // var check2 = document.getElementById("check2");
+    // var val2 = document.getElementById("input2").getAttribute("value");
+    // check2.onclick=function(){
+    //
+    //     if(val2 == 0){
+    //         check2.classList.add("aactive");
+    //         val2 = 1;
+    //     }
+    //     else if(val2 == 1){
+    //         check2.setAttribute("class","s-checkbox yh-check")
+    //         val2 = 0;
+    //     }
+    // }
+    // var check3 = document.getElementById("check3");
+    // var val3 = document.getElementById("input3").getAttribute("value");
+    // check3.onclick=function(){
+    //
+    //     if(val3 == 0){
+    //         check3.classList.add("aactive");
+    //         val3 = 1;
+    //     }
+    //     else if(val3 == 1){
+    //         check3.setAttribute("class","s-checkbox yh-check")
+    //         val3 = 0;
+    //     }
+    // }
+    var yc = document.getElementById("yanchang");
+    var yy = document.getElementById("yy");
+    var gj = document.getElementById("gj");
+    var et = document.getElementById("et");
+    
+
+
+
+    var kind = document.getElementById("kind")
+    var right = document.getElementById("right");
+    var r1 = document.getElementById("r1");
+    var r2 = document.getElementById("r2");
+    var r3 = document.getElementById("r3");
+    var r4 = document.getElementById("r4");
+    var rr = [r1,r2,r3,r4];
+
+    //经过各个标签
+
+
+
+    /*yc.onmouseover = function(){
+        right.classList.add("active");
+        r1.classList.add("active");
+        kind.classList.add("xian");
+    }
+    yc.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r1.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    yy.onmouseover = function(){
+        right.classList.add("active");
+        r2.classList.add("active");
+        kind.classList.add("xian");
+    }
+    yy.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r2.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    gj.onmouseover = function(){
+        right.classList.add("active");
+        r3.classList.add("active");
+        kind.classList.add("xian");
+    }
+    gj.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r3.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    et.onmouseover = function(){
+        right.classList.add("active");
+        r4.classList.add("active");
+        kind.classList.add("xian");
+    }
+    et.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r4.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    //经过各个子栏
+    
+    // console.log(rr);
+    for(var i=0; i<rr.length; i++){
+        rr[i].onmouseover = function(){
+            right.classList.add("active");
+            this.classList.add("active");
+        kind.classList.add("xian");
+        }
+        rr[i].onmouseout = function(){
+            right.setAttribute("class","right-detail")
+            this.setAttribute("class","kind-details")
+            kind.setAttribute("class","kind-list")
+        }
+    }*/
+
+    /*var all = document.getElementById("all")
+    all.onmouseover = function(){
+        kind.classList.add("active");
+    }
+    all.onmouseout = function(){
+        kind.setAttribute("class","kind-list")
+        kind.classList.add("kind-ss-list")
+    }
+    kind.onmouseover = function(){
+        kind.classList.add("active");
+    }
+    kind.onmouseout = function(){
+        kind.setAttribute("class","kind-list")
+        kind.classList.add("kind-ss-list")
+    }*/
+
+    var inp = document.getElementById("inp")
+    var cha = document.getElementById("cha")
+
+    inp.oninput = function(){
+        // console.log($.trim(inp.value).length)
+        var condition = $.trim(inp.value)
+        if (condition != ""){
+            // console.log("asdf")
+            cha.classList.add("search-result-active");
+            $("#cha").empty();
+            $.post("/searchList", {"condition":condition}, function (data, status) {
+                if (status === "success" && $.trim(data['status']) === '200') {
+                    $.each(data['data'], function (index, value) {
+                        $("#cha").append('<li class="result-items"><a href="/item/'+ value['id'] +'" target="_blank" class="result-link">' + value['cityname'] + '<span class="key-word"> </span>' + value['name'] + '</a></li>')
+                    })
+                } else {
+                    console.log(data['msg']);
+                }
+
+            }, "json")
+        } else {
+            //$("#cha").empty();
+            cha.setAttribute("class","search-result")
+        }
+    }
+    inp.onblur = function(){
+        cha.setAttribute("class","search-result")
+    }
+</script>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.super223.mapper.CustomMapper">
+    <select id="getAllAddress" resultType="java.lang.String">
+        select cityname from (select * from ticket where cityname is not null) notnull group by cityname order by count(name) desc
+    </select>
+
+    <select id="getAllType" resultType="java.lang.String">
+        select categoryname from (select * from ticket where categoryname is not null) notnull group by categoryname order by count(name) desc
+    </select>
+
+    <select id="getCityByKeyWord" resultType="java.lang.String" parameterType="java.lang.String">
+        select cityname from (select * from ticket where name like '%' #{keyWord, jdbcType=VARCHAR} '%' and cityname is not null) keySelect group by cityname order by count(name) desc;
+    </select>
+
+    <select id="getTypeByKeyWord" resultType="java.lang.String" parameterType="java.lang.String">
+        select categoryname from (select * from ticket where name like '%' #{keyWord, jdbcType=VARCHAR} '%' and categoryname is not null) keySelect group by categoryname order by count(name) desc;
+    </select>
+</mapper>

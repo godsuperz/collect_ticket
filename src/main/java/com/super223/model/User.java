@@ -1,10 +1,8 @@
 package com.super223.model;
 
+import java.util.Date;
 import javax.persistence.*;
 
-/**
- * @author superz
- */
 public class User {
     /**
      * 会员ID
@@ -37,6 +35,41 @@ public class User {
      * 是否被禁言　０：未禁言; １：禁言
      */
     private Boolean state;
+
+    /**
+     * 盐值
+     */
+    private String salt;
+
+    /**
+     * 头像
+     */
+    private String avatar;
+
+    /**
+     * 创建时间
+     */
+    private Date createtime;
+
+    /**
+     * 生日
+     */
+    private Date birthday;
+
+    /**
+     * 性别（0 . 保密  1 . 男  2 . 女）
+     */
+    private Integer sex;
+
+    /**
+     * 手机号码
+     */
+    private String phone;
+
+    /**
+     * 用户角色
+     */
+    private Integer roleid;
 
     /**
      * 获取会员ID
@@ -146,15 +179,129 @@ public class User {
         this.state = state;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", account=" + account +
-                ", state=" + state +
-                '}';
+    /**
+     * 获取盐值
+     *
+     * @return salt - 盐值
+     */
+    public String getSalt() {
+        return salt;
+    }
+
+    /**
+     * 设置盐值
+     *
+     * @param salt 盐值
+     */
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    /**
+     * 获取头像
+     *
+     * @return avatar - 头像
+     */
+    public String getAvatar() {
+        return avatar;
+    }
+
+    /**
+     * 设置头像
+     *
+     * @param avatar 头像
+     */
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    /**
+     * 获取创建时间
+     *
+     * @return createtime - 创建时间
+     */
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    /**
+     * 设置创建时间
+     *
+     * @param createtime 创建时间
+     */
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    /**
+     * 获取生日
+     *
+     * @return birthday - 生日
+     */
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * 设置生日
+     *
+     * @param birthday 生日
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    /**
+     * 获取性别（0 . 保密  1 . 男  2 . 女）
+     *
+     * @return sex - 性别（0 . 保密  1 . 男  2 . 女）
+     */
+    public Integer getSex() {
+        return sex;
+    }
+
+    /**
+     * 设置性别（0 . 保密  1 . 男  2 . 女）
+     *
+     * @param sex 性别（0 . 保密  1 . 男  2 . 女）
+     */
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    /**
+     * 获取手机号码
+     *
+     * @return phone - 手机号码
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * 设置手机号码
+     *
+     * @param phone 手机号码
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * 获取用户角色
+     *
+     * @return roleid - 用户角色
+     */
+    public Integer getRoleid() {
+        return roleid;
+    }
+
+    /**
+     * 设置用户角色
+     *
+     * @param roleid 用户角色
+     */
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
 }

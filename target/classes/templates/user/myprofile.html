@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="/static/css/geren.css">
+    <script src=""></script>
+    <title>我的DLSZ-个人资料</title>
+</head>
+<body>
+    <header>
+        <!-- 顶部栏 -->
+        <div class="new-navbar">
+            <div class="w1200">
+                <div class="slogan">文化青年，品质生活~</div>
+
+
+                <div class="nav-top">
+                    <!-- 未登录 -->
+
+
+                    <!-- 已登录 -->
+                    <div id="js-login-out" class="ds-inlineb">
+                        <div class="nav-items">
+                            <span class="c9">你好,</span>
+                            <a id="js-get-username" class="nav-link no-border-left" href="#" target="_black">DLSZ</a>
+                        </div>
+                        <div class="nav-items">
+                            <a class="nav-link c9" href="denglu.html">退出</a>
+                        </div>
+                    </div> 
+                    <!-- 已登陆END -->
+
+
+                    <div class="nav-items">
+                        <a class="nav-link" href="#">我的订单</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="new-header new-shadow">
+            <div class="w1200">
+                <div class="shouye">
+                    <a href="../shouye.html">DLSZ</a>
+                </div><!-- 
+                --><div class="search-box">
+                    <div class="search-bar">
+                        <div class="search-input">
+                            <input class="js-search" type="text">
+                        </div><!-- 
+                         --><a href="#" class="search-btn">
+                            <i></i>
+                        </a>
+                    </div>
+                    <div class="hot-search">
+                        <ul>
+                            <li><a href="">小野丽莎</a></li>
+                            <li><a href="">陈慧娴</a></li>
+                            <li><a href="">十二生肖</a></li>
+                            <li><a href="">三体</a></li>
+                            <li><a href="">回声</a></li>
+                            <li><a href="">GATS</a></li>
+                            <li><a href="">杨丞琳</a></li>
+                            <li><a href="">房东的猫</a></li>
+                            <li><a href="">花粥</a></li>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="w1200 mydlsz">
+        <div class="my-menu">
+            <h2 class="my-dlsz"><a href="#">我的DLSZ</a></h2>
+            <h2 class="my-order"><a href="#">订单中心</a> </h2>
+            <ul>
+                <li><a id="hover" class="noh" href="myorderlist.html"><i></i><b class="arr"></b>我的订单</a></li>
+                <li><a id="hover" class="noh" href="mycollect.html"><i></i><b class="arr"></b>我的关注</a></li>
+            </ul>
+            <h2 class="my-profile"><a href="#">账户中心</a> </h2>
+            <ul>
+                <li><a id="hover" class="active" href="myprofile.html"><i></i><b class="arr"></b>个人资料</a></li>
+                <li><a id="hover" class="noh" href="myaddress.html"><i></i><b class="arr"></b>收获地址</a></li>
+            </ul>
+            <h2 class="my-note"><a href="#">消息提醒</a> </h2>
+        </div>
+        <div class="u-warp2014">
+            <div class="u-title">
+                <h3>个人资料</h3>
+                <div class="o-t-tips">
+                    为了能为您提供个性化服务，完善资料中的真实姓名、性别、出生日期、演出喜好等信息，可获50积分
+                </div>
+            </div>
+            <div class="note">
+                <div class="si-tabs">
+                    <ul class="si-tabUl">
+                        <div class="rline"></div>
+                        <li class="active">
+                            <a href="#">编辑资料</a>
+                        </li>
+                        <div class="line"></div>
+                    </ul>
+                    
+                </div>
+                <div class="si-tab-bd">
+                    <div class="myprofile">
+                        <div id="tab-box-01" class="EditData">
+                            <div class="ed-tipt">
+                                为了您的帐户安全，请验证邮箱和验证手机 ！
+                            </div>
+                            <div class="EditData-form">
+                                <div class="edf-tit">
+                                    <b class="txt">基本资料：</b>
+                                </div>
+                                <form class="" method="post">
+                                    <ul>
+                                        <li class="clearfix">
+                                            <span class="e-name">昵称：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="nike_name" type="text" maxlength="30">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">邮箱登录：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="email" type="text" maxlength="30">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">绑定手机：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="mobile" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">真实姓名：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="name" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">身份证号：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="idc" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">性别：</span>
+                                            <div class="col-md-10">
+                                                <select name="gender">
+                                                    <option value="0" selected="selected">--保密--</option>
+                                                    <option value="1">男</option>
+                                                    <option value="2">女</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">演出喜好：</span>
+                                            <div class="col-md-10">
+                                                <select name="category">
+                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="35">演唱会</option>
+                                                    <option value="36">古典音乐</option>
+                                                    <option value="37">舞台剧</option>
+                                                    <option value="38">儿童亲子</option>
+                                                    <option value="39">其他</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">居住地：</span>
+                                            <div class="col-md-10">
+                                                <select name="provice">
+                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="1">北京</option>
+                                                    <option value="2">河南</option>
+                                                </select>
+                                                <select name="city">
+                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="1"></option>
+                                                    <option value="2"></option>
+                                                </select>
+                                                <select name="district">
+                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="1"></option>
+                                                    <option value="2"></option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">详细地址：</span>
+                                            <div class="col-md-10">
+                                                <textarea name="address" class="form-control" id="" cols="30" rows="3" style="width: 560px;height:95px;resize:none"></textarea>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="edf-tit">
+                                        <b class="txt">其他资料：</b>
+                                    </div>
+                                    <ul>
+                                        <li class="clearfix">
+                                            <span class="e-name">出生日期：</span>
+                                            <div class="col-md-10">
+                                                <input class="form-control" name="birthday" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">婚姻状况：</span>
+                                            <div class="col-md-10">
+                                                <select name="mariage">
+                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="1">单身</option>
+                                                    <option value="2">恋爱中</option>
+                                                    <option value="3">已婚但无子女</option>
+                                                    <option value="4">已婚且有子女</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">教育程度：</span>
+                                            <div class="col-md-10">
+                                                <select name="edu">
+                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="1">高中及一下</option>
+                                                    <option value="2">大学</option>
+                                                    <option value="3">硕士</option>
+                                                    <option value="4">博士及以上</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">月收入：</span>
+                                            <div class="col-md-10">
+                                                <select name="income">
+                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="1">2000元以下</option>
+                                                    <option value="2">2000-3999元</option>
+                                                    <option value="3">4000-5999元</option>
+                                                    <option value="4">6000-7999元</option>
+                                                    <option value="5">8000-9999元</option>
+                                                    <option value="6">10000元以上</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">自我介绍：</span>
+                                            <div class="col-md-10">
+                                                <textarea name="remark" class="form-control" id="" cols="30" rows="3" style="width: 560px;height:95px;resize:none"></textarea>
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">&nbsp;</span>
+                                            <button class="btn save-profile">保存资料</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </main>
+    <footer>
+        <div class="mini_foot">
+            <p>Copyright 2018.9 © DLSZ网 Java班 第三小组</p>
+        </div>
+    </footer>
+</body>
+<script>
+    var hover = document.getElementsByClassName("noh");
+    for(var i =0;i<hover.length;i++){
+        hover[i].onmouseover = function(){
+            console.log("123")
+            this.classList.add("active");
+        }
+        hover[i].onmouseout = function(){
+            this.setAttribute("class","noh")
+        }
+    }
+    
+
+</script>
+</html>

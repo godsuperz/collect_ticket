@@ -1,0 +1,218 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    color: #333;
+}
+body,div{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: #fff;
+    font-family: "微软雅黑", Arial;
+    font-size: 12px;
+    line-height: 1.42857143;
+}
+a{
+    text-decoration: none;
+    background-color: transparent;
+}
+header{
+    height: 89px;
+    background-color: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+}
+header .w1204{
+    width: 1204px;
+    margin: 0 auto;
+}
+header .logo{
+    float: left;
+    padding-top: 23px;
+
+}
+header .logo a{
+    text-decoration: none;
+    font-size: 35px;
+    line-height: 55px;
+    color: #31c27c;
+    font-weight: 300;
+}
+header .title{
+    float: left;
+    margin-top: 23px;
+    margin-left: 20px;
+    padding-left: 20px;
+    line-height: 55px;
+    font-size: 28px;
+    font-weight: normal;
+    border-left: 1px solid #e5e5e5;
+}
+main{
+    position: relative;
+    min-height: 600px;
+    padding-top: 80px;
+    border: 1px solid;
+    background: #fafafa url(../image/bg01.jpg);
+    background-position: -130px 0;
+}
+
+main .login_page{
+    position: absolute;
+    width: 400px;
+    left: 62%;
+    padding: 5px;
+    border-radius: 1px;
+    background: rgba(255, 255, 255, 0.9);
+}
+main .login_main{
+    padding: 23px 20px;
+    position: relative;
+}
+.static_form > div {
+    margin-left: auto;
+    margin-right: auto;
+}
+.static_form .tt{
+    font-size: 16px;
+    color: #3c3c3c;
+}
+.static_form .field {
+    position: relative;
+    margin-top: 20px;
+    height: 50px;
+}
+.static_form .ico_user,
+.static_form .ico_pass,
+.static_form .ico_email
+{
+    display: block;
+    width: 30px;
+    height: 30px;
+    background: url(../image/icon.png);
+    position: absolute;
+    left: 17px;
+    top: 7px;
+}
+.static_form .ico_user{
+    background: url(../image/yh.png);
+    background-size: 140%;
+    background-position: -6px -1px;
+}
+.static_form .ico_pass{
+    background: url(../image/ma.png);
+    background-size: 140%;
+    background-position: -6px -1px;
+}
+.static_form .ico_email{
+    background: url(../image/youxiang.png);
+    background-position: -8px -1px;
+}
+.ipt{
+    width: 350px;
+    height: 48px;
+    font-size: 14px;
+    padding-left: 57px;
+    border: 1px solid #ebebeb;
+    line-height: 48px;
+    transition: .3s;
+    border-radius: 3px;
+    display: inline-block;
+    /* float: left; */
+}
+.ipt:focus{
+    border: 1px solid #31c27c;
+}
+.login_links {
+    margin-top: 14px;
+    min-height: 14px;
+    overflow: hidden;
+    width: 350px;
+}
+.login_links a {
+    color: #44a2ff;
+}
+.static_form .gbtn {
+    width: 350px;
+    padding: 14px 0;
+    margin: 0;
+}
+.btn{
+    display: inline-block;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    line-height: 1.14;
+}
+.btn-default {
+    background-color: #31c27c;
+    border-color: #31c27c;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+}
+.btn-default:hover{
+    background-color: #2caf6f;
+}
+.entries{
+    margin-top: 20px;
+    text-align: center;
+}
+.entries a{
+    display: inline-block;
+    margin-right: 20px;
+    color: #333;
+}
+.entries a b{
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    margin-right: 5px;
+    color: #fff;
+    text-align: center;
+    line-height: 23px;
+    font-size: 14px;
+    font-weight: normal;
+    vertical-align: middle;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.entries a b.qq{
+    background: url(../image/qq.png);
+    background-size: 22px 22px;
+}
+.entries a b.wb{
+    background: url(../image/wb.png);
+    background-size: 22px 22px;
+}
+.entries a b.wx{
+    background: url(../image/wx.png);
+    background-size: 22px 22px;
+}
+/* 收货地址 */
+.myaddress-form {
+    border: 1px solid #eaeaea;
+    padding: 0 25px;
+    padding-bottom: 60px;
+    background-color: #fff;
+}
+
+
+
+
+
+
+
+
+.mini_foot{
+    padding: 20px 0 10px;
+    width: 576px;
+    margin: 0 auto;
+    display: block;
+    line-height: 24px;
+    text-align: center;
+    color: #666;
+}
+
