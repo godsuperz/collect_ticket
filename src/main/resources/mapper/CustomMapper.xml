@@ -16,4 +16,16 @@
     <select id="getTypeByKeyWord" resultType="java.lang.String" parameterType="java.lang.String">
         select categoryname from (select * from ticket where name like '%' #{keyWord, jdbcType=VARCHAR} '%' and categoryname is not null) keySelect group by categoryname order by count(name) desc;
     </select>
+
+    <select id="getUserCollect" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select ticketid from keep where userid = #{userid, jdbcType=INTEGER};
+    </select>
+
+    <delete id="deleteCollect">
+        delete from keep where userid = #{arg0, jdbcType=INTEGER} and ticketid = #{arg1, jdbcType=INTEGER}
+    </delete>
+
+    <insert id="addCollect">
+        insert into keep(userid,ticketid) values(#{arg0, jdbcType=INTEGER},#{arg1, jdbcType=INTEGER})
+    </insert>
 </mapper>

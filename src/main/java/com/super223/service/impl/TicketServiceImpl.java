@@ -272,4 +272,23 @@ public class TicketServiceImpl implements TicketService {
         return customMapper.getTypeByKeyWord(key);
     }
 
+    @Override
+    public Ticket getTicketInfoById(Integer id) {
+        Example example = new Example(Ticket.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("id", id);
+
+        return ticketMapper.selectOneByExample(example);
+    }
+
+/*
+    @Override
+    public List<Ticket> getTicketByIdList(List<Integer> ticketIdList) {
+        for (int i = 0; i < ticketIdList.size(); i++) {
+
+        }
+        return null;
+    }
+*/
+
 }

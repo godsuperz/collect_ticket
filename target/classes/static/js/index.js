@@ -18,5 +18,5 @@ $(document).ready(function () {
         var keyWord = $("#inp").val();
 
         location.href = "/search?k=" + keyWord;
-    })
+    });
 });

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="/static/css/geren.css">
+    <link rel="stylesheet" th:href="@{/static/css/shouye.css}" href="/static/css/shouye.css">
+    <link rel="stylesheet" th:href="@{/static/css/sousuo.css}" href="/static/css/sousuo.css">
     <script src=""></script>
     <title>我的DLSZ-我的关注</title>
 </head>
@@ -22,49 +24,59 @@
 
                     <!-- 已登录 -->
                     <div id="js-login-out" class="ds-inlineb">
-                        <div class="nav-items">
-                            <span class="c9">你好,</span>
-                            <a id="js-get-username" class="nav-link no-border-left" href="#" target="_black">DLSZ</a>
-                        </div>
-                        <div class="nav-items">
-                            <a class="nav-link c9" href="denglu.html">退出</a>
-                        </div>
+                        <th:block th:if="${username} != null">
+                            <div class="nav-items">
+                                <a id="js-get-username" class="nav-link no-border-left" th:href="@{/User/mycollect}" target="_black" th:text="${username}">DLSZ</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link c9" href="/logout">退出</a>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${username} == null">
+                            <div class="nav-items">
+                                <a id="login" class="nav-link no-border-left" th:href="@{/User/login}">登录</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link" th:href="@{/User/register}">注册</a>
+                            </div>
+                        </th:block>
                     </div> 
                     <!-- 已登陆END -->
 
 
-                    <div class="nav-items">
+                    <!--<div class="nav-items">
                         <a class="nav-link" href="#">我的订单</a>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
         <!-- 头部 -->
         <div class="new-header new-shadow">
-            <div class="w1200">
+            <div class="w1200 content-box">
                 <div class="shouye">
-                    <a href="../shouye.html">DLSZ</a>
+                    <a th:href="@{/}">DLSZ</a>
                 </div><!-- 
                 --><div class="search-box">
-                    <div class="search-bar">
-                        <div class="search-input">
-                            <input class="js-search" type="text">
-                        </div><!-- 
-                         --><a href="#" class="search-btn">
-                            <i></i>
-                        </a>
-                    </div>
+                <div class="search-bar">
+                    <div class="search-input">
+                        <input id="inp" class="js-search" type="text" th:value="${key}">
+                    </div><!--
+                         --><div class="search-btn" id="sou">
+                    <i></i>
+
+                </div>
+                    <ul class="search-result" id="cha">
+                        <!--<li class="result-items">
+                            <a href="#" target="_blank" class="result-link">
+                                北京
+                                <span class="key-word">小</span>
+                                小柯音乐剧“爱情三部曲”之二《等你爱我》
+                            </a>
+                        </li>-->
+                    </ul>
+                </div>
                     <div class="hot-search">
-                        <ul>
-                            <li><a href="">小野丽莎</a></li>
-                            <li><a href="">陈慧娴</a></li>
-                            <li><a href="">十二生肖</a></li>
-                            <li><a href="">三体</a></li>
-                            <li><a href="">回声</a></li>
-                            <li><a href="">GATS</a></li>
-                            <li><a href="">杨丞琳</a></li>
-                            <li><a href="">房东的猫</a></li>
-                            <li><a href="">花粥</a></li>
+                        <ul id="hotWord">
                         </ul>
                     </div> 
                 </div>
@@ -76,13 +88,13 @@
             <h2 class="my-dlsz"><a href="#">我的DLSZ</a></h2>
             <h2 class="my-order"><a href="#">订单中心</a> </h2>
             <ul>
-                <li><a id="hover" class="noh" href="myorderlist.html"><i></i><b class="arr"></b>我的订单</a></li>
-                <li><a id="hover" class="active" href="mycollect.html"><i></i><b class="arr"></b>我的关注</a></li>
+                <!--<li><a id="hover" class="noh" href="myorderlist.html"><i></i><b class="arr"></b>我的订单</a></li>-->
+                <li><a id="hover" class="active" href="/User/mycollect"><i></i><b class="arr"></b>我的关注</a></li>
             </ul>
             <h2 class="my-profile"><a href="#">账户中心</a> </h2>
             <ul>
-                <li><a id="hover" class="noh" href="myprofile.html"><i></i><b class="arr"></b>个人资料</a></li>
-                <li><a id="hover" class="noh" href="myaddress.html"><i></i><b class="arr"></b>收获地址</a></li>
+                <li><a id="hover" class="noh" href="/User/myprofile"><i></i><b class="arr"></b>个人资料</a></li>
+                <!--<li><a id="hover" class="noh" href="myaddress.html"><i></i><b class="arr"></b>收获地址</a></li>-->
             </ul>
             <h2 class="my-note"><a href="#">消息提醒</a> </h2>
         </div>
@@ -95,19 +107,77 @@
             </div>
             <div class="m-collect mt20">
                 <div class="collect-op">
-                    <input name="state" value="0" type="hidden" class="hidden">
+                    <!--<input name="state" value="0" type="hidden" class="hidden">
                     <label class="op-checkbox">
                         <span class="s-checkbox" id="checkstate"></span>
                         全选
                     </label>
-                    <a href="#">批量删除</a>
+                    <a href="#">批量删除</a>-->
                 </div>
                 <div class="collect-warp">
-                    <div class="no-mth-order" style="display: block;">
+                    <!--<div class="no-mth-order" style="display: block;">
                         <p class="myfont"></p>
                         <p class="notxt">您还没有关注演出！</p>
                         <p><a href="#">查看最新演出»</a> </p>
+                    </div>-->
+                    <div class="ticketList"></div>
+                    <th:block th:each="collectTicket : ${collectList}">
+                    <div class="collect-item" th:value="${collectTicket.actors}">
+                        <a th:href="@{'/ticket/item/' + ${collectTicket.id}}">
+                        <div class="clit-img" th:style="'background:url(' + ${collectTicket.img} + ') center center no-repeat;background-size:154px 205px'"></div>
+                        </a>
+                        <div class="clit-info">
+                            <h3>
+                                <a th:href="@{'/ticket/item/'+${collectTicket.id}}" th:text="${collectTicket.name}">
+                                    <!--【万有音乐系】
+                                    <span class="high-light-text">小野丽莎</span>
+                                    2018巡回演唱会-&#45;&#45;成都站-->
+                                </a>
+                            </h3>
+                            <p class="lisa" th:text="${collectTicket.showtime}">时 间：2018.12.21 19:30</p>
+                            <p class="lisa" th:text="${collectTicket.venue}">场 馆： [成都] 锦城艺术宫</p>
+                            <p class="lisa">
+                                票价：
+                                <span class="rmb">￥</span>
+                                <span class="num" th:text="${collectTicket.priceStr}">280~1280</span>
+                            </p>
+                            <p class="support"></p>
+                            <div class="ct">
+                                <span class="tag" th:if="${collectTicket.isxuanzuo}">
+                                    <a href="javascript:void(0)">在线选座</a>
+                                </span>
+                                <span class="tag" th:if="${collectTicket.iseticket}">
+                                    <a href="javascript:void(0)">电子票</a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="clit-btn">
+                            <span>
+                                <a th:href="@{'/User/removeCollect?ticketid='+${collectTicket.id}}" class="btn bg-fe5d36">不再关注</a>
+                            </span>
+                            <!--<span class="f-atten">
+                                <a href="#" class="btn">
+                                    <i class="yen">-</i>
+                                    不再关注
+                                </a>
+                            </span>-->
+                        </div>
+                        <div class="clear"></div>
                     </div>
+                    </th:block>
+                    <!--<div class="collect-item collect-item-btn">
+                        <div>
+                            <a href="javascript:void(0)" class="btn" id="checkMoreBtn">加载更多</a>
+                            &lt;!&ndash;<a href="#" class="btn bg-fe5d36">上一页</a>
+                            <a href="#" class="btn">1</a>
+                            <a href="#" class="btn">2</a>
+                            <a href="#" class="btn">3</a>
+                            <a href="#" class="btn">4</a>
+                            <a href="#" class="btn bg-fe5d36">下一页</a>&ndash;&gt;
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -118,6 +188,10 @@
         </div>
     </footer>
 </body>
+
+<script th:src="@{/static/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/static/js/index.js}"></script>
+
 <script>
     var hover = document.getElementsByClassName("noh");
     for(var i =0;i<hover.length;i++){
@@ -130,25 +204,56 @@
         }
     }
     
-    var hidden = document.getElementsByClassName("hidden")[0];
-    var value = hidden.getAttribute("value");
-    // console.log(value);
+    // var hidden = document.getElementsByClassName("hidden")[0];
+    // var value = hidden.getAttribute("value");
+    // // console.log(value);
+    //
+    // var check = document.getElementById("checkstate")
+    // // console.log(check);
+    // check.onclick = function(){
+    //
+    //     if(value == 0){
+    //         // console.log(check)
+    //         check.classList.add("aactive");
+    //         value = 1;
+    //     }
+    //     else{
+    //         check.setAttribute("class","s-checkbox")
+    //         value = 0;
+    //     }
+    // }
+    var inp = document.getElementById("inp")
+    var cha = document.getElementById("cha")
 
-    var check = document.getElementById("checkstate")
-    // console.log(check);
-    check.onclick = function(){
-    
-        if(value == 0){
-            // console.log(check)
-            check.classList.add("aactive");
-            value = 1;
-        }
-        else{
-            check.setAttribute("class","s-checkbox")
-            value = 0;
+    inp.oninput = function(){
+        // console.log($.trim(inp.value).length)
+        var condition = $.trim(inp.value)
+        if (condition != ""){
+            // console.log("asdf")
+            cha.classList.add("search-result-active");
+            $("#cha").empty();
+            $.post("/searchList", {"condition":condition}, function (data, status) {
+                if (status === "success" && $.trim(data['status']) === '200') {
+                    $.each(data['data'], function (index, value) {
+                        $("#cha").append('<li class="result-items"><a href="/ticket/item/'+ value['id'] +'" target="_blank" class="result-link">' + value['cityname'] + '<span class="key-word"> </span>' + value['name'] + '</a></li>')
+                    })
+                } else {
+                    console.log(data['msg']);
+                }
+
+            }, "json")
+        } else {
+            //$("#cha").empty();
+            cha.setAttribute("class","search-result")
         }
     }
-
+    cha.onmouseover = function () {
+        // console.log("gg")
+        cha.classList.add("search-result-active")
+    }
+    cha.onmouseout = function () {
+        cha.setAttribute("class","search-result")
+    }
 
 </script>
 </html>

@@ -36,12 +36,26 @@ $(document).ready(function () {
         if (status === "success" && $.trim(data['status']) === '200') {
             var index = coin();
             var ticket = data.data[index];
-            $("#everyoneLookForDesc").append('<a href="javascript:void(0)" class="img" style="background-image: url(' + ticket.img + ')">\n' +
+            $("#everyoneLookForDesc").append('<a href="/ticket/item/' + $.trim(ticket.id) +
+                '" class="img" style="background-image: url(' + ticket.img + ')" target="_blank">' +
                 '<p id="everyoneLookForDesc" class="">\n' + ticket.name + '</p></a>');
         } else {
             console.log(status);
         }
     });
+
+    var userCollect;
+    // 初始化关注
+    var isUserLogin = $.trim($("#isUserLogin a:first").text());
+    if (isUserLogin !== "登录") {
+        $.getJSON("/User/getUserCollect", {"username":isUserLogin}, function (data, status) {
+            if (status === "success" && $.trim(data['status']) === '200') {
+                userCollect = data.data;
+            } else {
+                console.log(status);
+            }
+        })
+    }
 
     // 掷硬币
     function coin() {
@@ -88,21 +102,46 @@ $(document).ready(function () {
         return 0;
     }
 
+    // 改变关注状态
+    /*function (index, target) {
+        console.log(index);
+        if (index === 0) {
+            $(target).removeClass("bg-fe5d36");
+            console.log(index);
+        }
+        if (index === 1) {
+            $(target).addClass("bg-fe5d36");
+            console.log(index);
+        }
+    }*/
+
     // 发起异步请求
     function searchAjax(url, data) {
         $.post(url, data, function (returnData, status) {
             if (status === "success" && $.trim(returnData['status']) === "200") {
                 $.each(returnData.data, function (index, ticket) {
-                    $(".ticketList").append('<div class="collect-item ticket-item"><a href="/item/' + $.trim(ticket.id) +
-                        '"><div class="clit-img" style="background-image:url('+ ticket.img +
-                    ')"></div></a><div class="clit-info"> <h3> <a href="/item/' + $.trim(ticket.id) +
-                        '">'+ ticket.name+' </a> </h3> <p class="lisa">时 间：'+ ticket.showtime +
-                        '</p> <p class="lisa">场 馆： ['+ ticket.cityname + '] ' + ticket.venue +
-                            '</p> <p class="lisa">票价： <span class="rmb">￥</span> <span class="num">'+ ticket.price + '~' + ticket.pricehigh +
-                        '</span> </p> <p class="support"></p> <div class="ct"> <span class="tag"><a href="#">在线选座</a> </span> <span class="tag">' +
-                        '<a href="#">电子票</a> </span> </div> </div> <div class="clit-btn"> <span> <a href="'+ ticket.img +
-                        '" class="btn bg-fe5d36">立即购票</a> </span> <span class="f-atten"> <a href="javascript:void(0)' +
-                        '" class="btn"> <i class="yen">+</i>关注 </a> </span> </div> <div class="clear"></div> </div>');
+                    if ($.inArray(parseInt($.trim(ticket.id)), userCollect) >= 0) {
+                        $(".ticketList").append('<div class="collect-item ticket-item"><a href="/ticket/item/' + $.trim(ticket.id) +
+                            '"><div class="clit-img" style="background-image:url(' + ticket.img +
+                            ')"></div></a><div class="clit-info"> <h3> <a href="/ticket/item/' + $.trim(ticket.id) +
+                            '">' + ticket.name + ' </a> </h3> <p class="lisa">时 间：' + ticket.showtime +
+                            '</p> <p class="lisa">场 馆： [' + ticket.cityname + '] ' + ticket.venue +
+                            '</p> <p class="lisa">票价： <span class="rmb">￥</span> <span class="num">' + ticket.price + '~' + ticket.pricehigh +
+                            '</span> </p> <p class="support"></p> <div class="ct"> <span class="tag"><a href="#">在线选座</a> </span> <span class="tag">' +
+                            '<a href="#">电子票</a> </span> </div> </div> <div class="clit-btn"> <span> <a href=https://piao.damai.cn/' + ticket.projectid +
+                            '.html class="btn bg-fe5d36" target="_blank">立即购票</a> </span> <span class="f-atten"> <a href="javascript:void(0)' +
+                            '" class="btn"> <i class="yen"></i>已关注 </a> </span> </div> <div class="clear"></div> </div>');
+                    } else {
+                        $(".ticketList").append('<div class="collect-item ticket-item"><a href="/ticket/item/' + $.trim(ticket.id) +
+                            '"><div class="clit-img" style="background-image:url(' + ticket.img +
+                            ')"></div></a><div class="clit-info"> <h3> <a href="/ticket/item/' + $.trim(ticket.id) +
+                            '">' + ticket.name + ' </a> </h3> <p class="lisa">时 间：' + ticket.showtime +
+                            '</p> <p class="lisa">场 馆： [' + ticket.cityname + '] ' + ticket.venue +
+                            '</p> <p class="lisa">票价： <span class="rmb">￥</span> <span class="num">' + ticket.price + '~' + ticket.pricehigh +
+                            '</span> </p> <p class="support"></p> <div class="ct"> <span class="tag"><a href="#">在线选座</a> </span> <span class="tag">' +
+                            '<a href="#">电子票</a> </span> </div> </div> <div class="clit-btn"> <span> <a href=https://piao.damai.cn/' + ticket.projectid +
+                            '.html class="btn bg-fe5d36" target="_blank">立即购票</a> </span> <span class="f-atten"></span> </div> <div class="clear"></div> </div>');
+                    }
                 });
                 toggleCheckMore(returnData.number);
             } else {
@@ -241,4 +280,13 @@ $(document).ready(function () {
         searchAjax(url, formData);
     });
 
+    // 关注按钮的点击事件
+    /*$(".collectBtn").click(function (e) {
+        e.preventDefault();
+
+        console.log("我点击了");
+        if ($(this).hasClass("bg-fe5d36")) {
+            console.log("小主，你已经关注过了！");
+        }
+    });*/
 });

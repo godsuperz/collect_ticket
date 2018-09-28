@@ -2,9 +2,6 @@ package com.super223.model;
 
 import javax.persistence.*;
 
-/**
- * @author superz
- */
 public class Keep {
     /**
      * 收藏id

@@ -21,7 +21,7 @@
     <main>
         <div class="login_page">
             <div class="login_main">
-                <form class="static_form" th:action="@{/User/addUser}" th:object="${form}" th:method="post">
+                <form id="userInfoForm" class="static_form" th:action="@{/User/addUser}" th:object="${form}" th:method="post">
                     <div class="tt">新用户注册</div>
                     <div class="field">
                         <i class="ico_user"></i>

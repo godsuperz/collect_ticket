@@ -96,4 +96,17 @@ public interface TicketService {
      * @return
      */
     List<String> getTypeByKeyWord(String key);
+
+    /**
+     * 通过ID查询票务详细信息
+     * @param id 票务id
+     * @return 票务信息
+     */
+    Ticket getTicketInfoById(Integer id);
+
+    /**
+     * 通过票务id列表获取票务信息
+     * @param ticketIdList 票务id列表
+     * @return 票务列表
+    List<Ticket> getTicketByIdList(List<Integer> ticketIdList);*/
 }

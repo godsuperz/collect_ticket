@@ -37,4 +37,20 @@ public interface CustomMapper {
      * @return 列表名称列表
      */
     List<String> getTypeByKeyWord(String keyWord);
+
+    List<Integer> getUserCollect(Integer userid);
+
+    /**
+     * 移除收藏
+     * @param userid 用户id
+     * @param ticketid 票务id
+     */
+    void deleteCollect(Integer userid, Integer ticketid);
+
+    /**
+     * 收藏
+     * @param userid 用户id
+     * @param ticketid 票务id
+     */
+    void addCollect(Integer userid, Integer ticketid);
 }

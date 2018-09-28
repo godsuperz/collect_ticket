@@ -1,5 +1,6 @@
 package com.super223.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -49,12 +50,12 @@ public class User {
     /**
      * 创建时间
      */
-    private Date createtime;
+    private LocalDate createtime;
 
     /**
      * 生日
      */
-    private Date birthday;
+    private LocalDate birthday;
 
     /**
      * 性别（0 . 保密  1 . 男  2 . 女）
@@ -220,7 +221,7 @@ public class User {
      *
      * @return createtime - 创建时间
      */
-    public Date getCreatetime() {
+    public LocalDate getCreatetime() {
         return createtime;
     }
 
@@ -229,7 +230,7 @@ public class User {
      *
      * @param createtime 创建时间
      */
-    public void setCreatetime(Date createtime) {
+    public void setCreatetime(LocalDate createtime) {
         this.createtime = createtime;
     }
 
@@ -238,7 +239,7 @@ public class User {
      *
      * @return birthday - 生日
      */
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
@@ -247,7 +248,7 @@ public class User {
      *
      * @param birthday 生日
      */
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 
@@ -303,5 +304,24 @@ public class User {
      */
     public void setRoleid(Integer roleid) {
         this.roleid = roleid;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", account=" + account +
+                ", state=" + state +
+                ", salt='" + salt + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", createtime=" + createtime +
+                ", birthday=" + birthday +
+                ", sex=" + sex +
+                ", phone='" + phone + '\'' +
+                ", roleid=" + roleid +
+                '}';
     }
 }

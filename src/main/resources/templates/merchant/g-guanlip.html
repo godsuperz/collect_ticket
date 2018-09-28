@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../style/geren.css">
+    <script src=""></script>
+    <title>管理员-管理票务</title>
+</head>
+<body>
+    <header>
+        <!-- 顶部栏 -->
+        <div class="new-navbar">
+            <div class="w1200">
+                <div class="slogan">文化青年，品质生活~</div>
+
+
+                <div class="nav-top">
+                    <!-- 未登录 -->
+
+
+                    <!-- 已登录 -->
+                    <div id="js-login-out" class="ds-inlineb">
+                        <div class="nav-items nav-shang">
+                            <span class="c9">你好,</span>
+                            <a id="js-get-username" class="nav-link no-border-left shang-left" href="#" target="_black">DLSZ</a>
+                            <span class="c9">管理员</span>
+                        </div>
+                        <div class="nav-items">
+                            <a class="nav-link c9" href="denglu.html">退出</a>
+                        </div>
+                    </div> 
+                   
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="new-header new-shadow">
+            <div class="w1200">
+                <div class="shouye s-shou">
+                    <a href="#">DLSZ</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="w1200 mydlsz">
+        <div class="my-menu">
+            <h2 class="my-dlsz"><a href="#">我的DLSZ</a></h2>
+            <h2 class="my-yonghu"><a href="#">用户和商家信息</a> </h2>
+            <ul>
+                <li><a id="hover" class="noh" href="g-guanliy.html"><i></i><b class="arr"></b>用户管理</a></li>
+                <li><a id="hover" class="noh" href="g-guanlis.html"><i></i><b class="arr"></b>商家管理</a></li>
+            </ul>
+            <h2 class="my-order"><a href="#">管理票务</a> </h2>
+            <ul>
+                <li><a id="hover" class="active" href="#"><i></i><b class="arr"></b>票务管理</a></li>
+                <li><a id="hover" class="noh" href="g-shenhep.html"><i></i><b class="arr"></b>审核票务</a></li>
+            </ul>
+            <h2 class="my-profile"><a href="#">账户中心</a> </h2>
+            <ul>
+                <li><a id="hover" class="noh" href="g-geren.html"><i></i><b class="arr"></b>个人资料</a></li>
+            </ul>
+            <h2 class="my-note"><a href="#">消息提醒</a> </h2>
+        </div>
+        <div class="u-warp2014">
+            <div class="u-title">
+                <h3>管理票务</h3>
+                <div class="o-t-tips">
+                    在这里，您可以查票务信息或下架票务。
+                </div>
+            </div>
+            <div class="stockPor">
+                <div class="st-tit">
+                    <ul class="clearfix">
+                        <li class="sd-th1">
+                            票务ID
+                            <b class="line"></b>
+                        </li>
+                        <li class="sd-th2">
+                            票务名称
+                            <b class="line"></b>
+                        </li>
+                        <li class="sd-th3">
+                            票价
+                            <b class="line"></b>
+                        </li>
+                        <li class="sd-th4">
+                            票务开始时间
+                            <b class="line"></b>
+                        </li>
+                         <li class="sd-th4">
+                            票务结束时间
+                            <b class="line"></b>
+                        </li>
+                        <li class="sd-th5">
+                            票务数量
+                            <b class="line"></b>
+                        </li>
+                    </ul>
+                </div>
+                <table class="address-table address-s-table" width="100%">
+                    <tr>
+                        <td class="sd-th1">
+                            22303215
+                        </td><td class="sd-th2">
+                            世界经典原版音乐剧《猫》Cats 广州站 
+                        </td><td class="sd-th3">
+                            180~680
+                        </td><td class="sd-th4">
+                            2018.10.01
+                        </td><td class="sd-th4">
+                            2018.12.29
+                        </td><td class="sd-th5">
+                            609
+                        </td><td class="address-td-op">
+                            <a href="#">删除本票务</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </main>
+    <footer>
+        <div class="mini_foot">
+            <p>Copyright 2018.9 © DLSZ网 Java班 第三小组</p>
+        </div>
+    </footer>
+</body>
+<script>
+    var hover = document.getElementsByClassName("noh");
+    for(var i =0;i<hover.length;i++){
+        hover[i].onmouseover = function(){
+            console.log("123")
+            this.classList.add("active");
+        }
+        hover[i].onmouseout = function(){
+            this.setAttribute("class","noh")
+        }
+    }
+    
+
+</script>
+</html> 

@@ -18,22 +18,22 @@
                 <div class="slogan">文化青年，品质生活~</div>
 
 
-                <div class="nav-top">
+                <div class="nav-top" id="isUserLogin">
                     <!-- 未登录 -->
 
 
                     <!-- 已登录 -->
-                    <th:block th:if="1 eq 0">
+                    <th:block th:if="${username} != null">
                         <div class="nav-items">
-                            <a id="js-get-username" class="nav-link no-border-left" href="user/myorderlist.html" target="_black">你好, DLSZ</a>
+                            <a id="js-get-username" class="nav-link no-border-left" th:href="@{/User/mycollect}" target="_black" th:text="${username}">DLSZ</a>
                         </div>
                         <div class="nav-items">
-                            <a class="nav-link c9" href="user/denglu.html">退出</a>
+                            <a class="nav-link c9" href="/logout">退出</a>
                         </div>
                     </th:block>
-                    <th:block th:if="1 eq 1">
+                    <th:block th:if="${username} == null">
                         <div class="nav-items">
-                            <a id="login" class="nav-link no-border-left" th:href="@{/User/login}" href="user/myorderlist.html">登录</a>
+                            <a id="login" class="nav-link no-border-left" th:href="@{/User/login}">登录</a>
                         </div>
                         <div class="nav-items">
                             <a class="nav-link" th:href="@{/User/register}">注册</a>
@@ -42,9 +42,9 @@
                     <!-- 已登陆END -->
 
 
-                    <div class="nav-items">
-                        <a class="nav-link" href="myorderlist.html">我的订单</a>
-                    </div>
+                    <!--<div class="nav-items">
+                        <a class="nav-link" href="/User/myorderlist">我的订单</a>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -685,7 +685,7 @@
             $.post("/searchList", {"condition":condition}, function (data, status) {
                 if (status === "success" && $.trim(data['status']) === '200') {
                     $.each(data['data'], function (index, value) {
-                        $("#cha").append('<li class="result-items"><a href="/item/'+ value['id'] +'" target="_blank" class="result-link">' + value['cityname'] + '<span class="key-word"> </span>' + value['name'] + '</a></li>')
+                        $("#cha").append('<li class="result-items"><a href="/ticket/item/'+ value['id'] +'" target="_blank" class="result-link">' + value['cityname'] + '<span class="key-word"> </span>' + value['name'] + '</a></li>')
                     })
                 } else {
                     console.log(data['msg']);
@@ -697,7 +697,11 @@
             cha.setAttribute("class","search-result")
         }
     }
-    inp.onblur = function(){
+    cha.onmouseover = function () {
+        // console.log("gg")
+        cha.classList.add("search-result-active")
+    }
+    cha.onmouseout = function () {
         cha.setAttribute("class","search-result")
     }
 </script>

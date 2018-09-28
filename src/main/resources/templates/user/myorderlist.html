@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="/static/css/geren.css">
+    <link rel="stylesheet" th:href="@{/static/css/shouye.css}" href="/static/css/shouye.css">
     <script src=""></script>
     <title>我的DLSZ-我的订单</title>
 </head>
@@ -22,49 +23,59 @@
 
                     <!-- 已登录 -->
                     <div id="js-login-out" class="ds-inlineb">
-                        <div class="nav-items">
-                            <span class="c9">你好,</span>
-                            <a id="js-get-username" class="nav-link no-border-left" href="#" target="_black">DLSZ</a>
-                        </div>
-                        <div class="nav-items">
-                            <a class="nav-link c9" href="denglu.html">退出</a>
-                        </div>
-                    </div> 
+                        <th:block th:if="${username} != null">
+                            <div class="nav-items">
+                                <a id="js-get-username" class="nav-link no-border-left" th:href="@{'user/myorderlist/'+${username}}" target="_black" th:text="${username}">DLSZ</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link c9" href="/logout">退出</a>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${username} == null">
+                            <div class="nav-items">
+                                <a id="login" class="nav-link no-border-left" th:href="@{/User/login}">登录</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link" th:href="@{/User/register}">注册</a>
+                            </div>
+                        </th:block>
+                    </div>
                     <!-- 已登陆END -->
 
 
                     <div class="nav-items">
-                        <a class="nav-link" href="#">我的订单</a>
+                        <a class="nav-link" href="/User/myorderlist">我的订单</a>
                     </div>
                 </div>
             </div>
         </div>
         <!-- 头部 -->
         <div class="new-header new-shadow">
-            <div class="w1200">
+            <div class="w1200 content-box">
                 <div class="shouye">
-                    <a href="../shouye.html">DLSZ</a>
+                    <a th:href="@{/}">DLSZ</a>
                 </div><!-- 
                 --><div class="search-box">
-                    <div class="search-bar">
-                        <div class="search-input">
-                            <input class="js-search" type="text">
-                        </div><!-- 
-                         --><a href="#" class="search-btn">
-                            <i></i>
-                        </a>
-                    </div>
+                <div class="search-bar">
+                    <div class="search-input">
+                        <input id="inp" class="js-search" type="text" th:value="${key}">
+                    </div><!--
+                         --><div class="search-btn" id="sou">
+                    <i></i>
+
+                </div>
+                    <ul class="search-result" id="cha">
+                        <!--<li class="result-items">
+                            <a href="#" target="_blank" class="result-link">
+                                北京
+                                <span class="key-word">小</span>
+                                小柯音乐剧“爱情三部曲”之二《等你爱我》
+                            </a>
+                        </li>-->
+                    </ul>
+                </div>
                     <div class="hot-search">
-                        <ul>
-                            <li><a href="">小野丽莎</a></li>
-                            <li><a href="">陈慧娴</a></li>
-                            <li><a href="">十二生肖</a></li>
-                            <li><a href="">三体</a></li>
-                            <li><a href="">回声</a></li>
-                            <li><a href="">GATS</a></li>
-                            <li><a href="">杨丞琳</a></li>
-                            <li><a href="">房东的猫</a></li>
-                            <li><a href="">花粥</a></li>
+                        <ul id="hotWord">
                         </ul>
                     </div> 
                 </div>
@@ -76,13 +87,12 @@
             <h2 class="my-dlsz"><a href="#">我的DLSZ</a></h2>
             <h2 class="my-order"><a href="#">订单中心</a> </h2>
             <ul>
-                <li><a class="active" href="myorderlist.html"><i></i><b class="arr"></b>我的订单</a></li>
+                <!--<li><a class="active" th:href="@{/myorderlist/}"><i></i><b class="arr"></b>我的订单</a></li>-->
                 <li><a id="hover" class="noh" href="mycollect.html"><i></i><b class="arr"></b>我的关注</a></li>
             </ul>
             <h2 class="my-profile"><a href="#">账户中心</a> </h2>
             <ul>
                 <li><a id="hover" class="noh" href="myprofile.html"><i></i><b class="arr"></b>个人资料</a></li>
-                <li><a id="hover" class="noh" href="myaddress.html"><i></i><b class="arr"></b>收获地址</a></li>
             </ul>
             <h2 class="my-note"><a href="#">消息提醒</a> </h2>
         </div>
@@ -95,7 +105,6 @@
                         待支付
                         <em class="num">（0）</em>
                     </a>
-                    <a href="#">待收货<em class="num">（0）</em></a>
                     <a href="#">待评价<em class="num">（0）</em></a>
                 </div>
             </div>
@@ -113,6 +122,9 @@
         </div>
     </footer>
 </body>
+
+<script th:src="@{/static/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/static/js/index.js}"></script>
 <script>
     var hover = document.getElementsByClassName("noh");
     for(var i =0;i<hover.length;i++){
@@ -124,7 +136,38 @@
             this.setAttribute("class","noh")
         }
     }
-    
 
+    var inp = document.getElementById("inp")
+    var cha = document.getElementById("cha")
+
+    inp.oninput = function(){
+        // console.log($.trim(inp.value).length)
+        var condition = $.trim(inp.value)
+        if (condition != ""){
+            // console.log("asdf")
+            cha.classList.add("search-result-active");
+            $("#cha").empty();
+            $.post("/searchList", {"condition":condition}, function (data, status) {
+                if (status === "success" && $.trim(data['status']) === '200') {
+                    $.each(data['data'], function (index, value) {
+                        $("#cha").append('<li class="result-items"><a href="/ticket/item/'+ value['id'] +'" target="_blank" class="result-link">' + value['cityname'] + '<span class="key-word"> </span>' + value['name'] + '</a></li>')
+                    })
+                } else {
+                    console.log(data['msg']);
+                }
+
+            }, "json")
+        } else {
+            //$("#cha").empty();
+            cha.setAttribute("class","search-result")
+        }
+    }
+    cha.onmouseover = function () {
+        // console.log("gg")
+        cha.classList.add("search-result-active")
+    }
+    cha.onmouseout = function () {
+        cha.setAttribute("class","search-result")
+    }
 </script>
 </html>

@@ -47,7 +47,6 @@ public class IndexController {
      */
     @PostMapping("/searchList")
     public JSONResult searchList(@RequestParam("condition") String condition){
-        System.out.println(condition);
         List<Ticket> ticketList = ticketService.getTicketByName(condition);
         if (ticketList.size() > Const.SEARCHLIST_COUNT){
             return JSONResult.ok(ticketList.subList(0, 10));

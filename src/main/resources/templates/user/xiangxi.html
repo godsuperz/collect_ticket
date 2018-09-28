@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="../../static/css/geren.css">
+    <link rel="stylesheet" th:href="@{/static/css/shouye.css}" href="../../static/css/shouye.css">
+    <style>
+        body{
+            line-height: 1.8;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .crumb {
+            padding: 20px 0 10px;
+        }
+        .crumb a {
+            color: #666;
+        }
+        .crumb .arr {
+            padding: 0 8px;
+            color: #999;
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: -4px;
+        }
+        .show-warp {
+            width: 1204px;
+            margin: 0 auto 15px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ebebeb;
+            background-color: #f9f9f9;
+        }
+        .show-main {
+            float: left;
+            width: 1000px;
+            padding-bottom: 6000px;
+            margin-bottom: -6000px;
+            padding-left: 15px;
+            background-color: #fff;
+        }
+        .goods {
+            position: relative;
+            padding-bottom: 25px;
+        }
+        .goods .poster {
+            float: left;
+        }
+        .goods .poster .picbox {
+            margin-top: 30px;
+            position: relative;
+            width: 280px;
+            height: 372px;
+            overflow: hidden;
+            /*background-size: 280px 372px;*/
+            /*background: no-repeat 50% 50%;*/
+        }
+        .dleft {
+            margin: 0 24px 0 311px;
+            color: #999;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .dRow {
+            padding-bottom: 10px;
+        }
+        .goods .title {
+            padding: 30px 0 25px 0;
+            color: #333;
+            font-size: 20px;
+            font-weight: normal;
+        }
+        .goods .title.w720 {
+            width: 720px;
+            text-indent: 20px;
+        }
+        .dRow .dtt {
+            display: inline-block;
+            width: 100px;
+            text-indent: 20px;
+            vertical-align: top;
+            line-height: 1.8;
+        }
+        .dRow .ct {
+            display: inline-block;
+            min-width: 230px;
+            width: 535px;
+            line-height: 1.8;
+            width: 700px;
+        }
+        .c-999 {
+            color: #999;
+        }
+        .deta-btn {
+            padding-bottom: 20px;
+            margin-top: 15px;
+        }
+        .dRow .ctt {
+            width: 700px;
+            display: inline-block;
+            min-width: 230px;
+            line-height: 1.8;
+            margin-left: 100px;
+        }
+        .deta-btn .btn {
+            position: relative;
+            border: none;
+            color: #fff;
+            padding: 10px 38px;
+            font-size: 14px;
+            margin: 5px;
+            border-radius: 3px;
+            line-height: 1.14;
+            white-space: nowrap;
+            transition: .2s;
+            cursor: pointer;
+        }
+        .deta-btn .btn-l {
+            background-color: #31c27c;
+        }
+        .deta-btn .btn-l:hover {
+            background-color: #2caf6f;
+        }
+        .deta-btn .btn-r {
+            background-color: white;
+            border: 1px solid #ebebeb;
+            
+            color: #666;
+        }
+        .deta-btn .btn-r:hover {
+            color: #31c27c;
+            border-color: #2caf6f;
+        }
+    </style>
+    <title>DLSZ-详细信息</title>
+</head>
+<body>
+    <header>
+        <!-- 顶部栏 -->
+        <div class="new-navbar">
+            <div class="w1200">
+                <div class="slogan">文化青年，品质生活~</div>
+
+
+                <div class="nav-top">
+                    <!-- 未登录 -->
+
+
+                    <!-- 已登录 -->
+                    <th:block th:if="${username} != null">
+                        <div class="nav-items">
+                            <a id="js-get-username" class="nav-link no-border-left" th:href="@{/User/mycollect}" target="_black" th:text="${username}">DLSZ</a>
+                        </div>
+                        <div class="nav-items">
+                            <a class="nav-link c9" href="/logout">退出</a>
+                        </div>
+                    </th:block>
+                    <th:block th:if="${username} == null">
+                        <div class="nav-items">
+                            <a id="login" class="nav-link no-border-left" th:href="@{/User/login}">登录</a>
+                        </div>
+                        <div class="nav-items">
+                            <a class="nav-link" th:href="@{/User/register}">注册</a>
+                        </div>
+                    </th:block>
+                    <!-- 已登陆END -->
+
+
+                    <!--<div class="nav-items">
+                        <a class="nav-link" href="/User/myorderlist">我的订单</a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!-- 头部 -->
+        <div class="new-header new-shadow">
+            <div class="w1200 content-box">
+                <div class="shouye">
+                    <a th:href="@{/}">DLSZ</a>
+                </div><!-- 
+                --><div class="search-box">
+                <div class="search-bar" id="sss">
+                    <div class="search-input">
+                        <input id="inp" class="js-search" type="text" th:value="${key}">
+                    </div><!--
+                 --><div class="search-btn" id="sou">
+                    <i></i>
+
+                    </div>
+                    <ul class="search-result" id="cha">
+                        <!--<li class="result-items">
+                            <a href="www.baidu.com" target="_blank" class="result-link">
+                                北京
+                                <span class="key-word">小</span>
+                                小柯音乐剧“爱情三部曲”之二《等你爱我》
+                            </a>
+                        </li>-->
+                    </ul>
+                </div>
+                <div class="hot-search">
+                    <ul id="hotWord">
+                    </ul>
+                </div>
+            </div>
+            </div>
+            <div class="nav-head">
+                <ul class="w1200 hei">
+                    <li class="nav-item">
+                        <a th:href="@{/search}" class="nav-link">全部商品分类</a>
+                        <!-- 侧边导航 -->
+                        <!--<div class="kind-list" id="kind">
+                            <div class="left-index">
+                                <a class="kind-link" id="yanchang" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon"></i>
+                                    <span class="kind-text">演唱会</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" id="yy" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon2"></i>
+                                    <span class="kind-text">音乐会</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" id="gj" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon3"></i>
+                                    <span class="kind-text">话剧歌剧</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" id="et" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon4"></i>
+                                    <span class="kind-text">休闲度假</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon5"></i>
+                                    <span class="kind-text">舞蹈芭蕾</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon6"></i>
+                                    <span class="kind-text">曲苑杂坛</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                                <a class="kind-link" href="/search?Type=演唱会">
+                                    <i class="bg-icon kind-icon7"></i>
+                                    <span class="kind-text">体育比赛</span>
+                                    &lt;!&ndash;<i class="bg-icon more-icon"></i>&ndash;&gt;
+                                </a>
+                            </div>
+                            <div class="right-detail" id="right">
+                                <div class="kind-details" id="r1" style="background-image: url(../static/image/i1.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            流行
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>摇滚
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>民谣
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>民族
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="kind-details" id="r2" style="background-image: url(../static/image/yy.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            交响
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>独奏
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kind-details" id="r3" style="background-image: url(../static/image/gj.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            话剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>歌剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>歌舞剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="kind-details" id="r4" style="background-image: url(../static/image/et.jpg)">
+                                    <div class="col">
+                                        <a class="details-link" href="#" target="_blank">
+                                            儿童剧
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>亲子活动
+                                        </a>
+                                        <a class="details-link" href="#" target="_blank">
+                                            <span class="line"></span>其他
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=演唱会" class="nav-link">演唱会</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=舞蹈芭蕾" class="nav-link">舞蹈芭蕾</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=话剧歌剧" class="nav-link">话剧歌剧</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=曲苑杂坛" class="nav-link">曲苑杂坛</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=音乐会" class="nav-link">音乐会</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=体育比赛" class="nav-link">体育比赛</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=度假休闲" class="nav-link">度假休闲</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/search?type=周边商品" class="nav-link">周边商品</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="w1200">
+        <div class="crumb">
+            <a th:href="@{/}">首页</a>
+            <span class="arr">»</span>
+            <a th:href="'/search?type=' + ${ticket.categoryname}" th:text="${ticket.categoryname}"></a>
+            <span class="arr">»</span>
+            <span th:text="${ticket.name}">[北京] 世界经典原版音乐剧《猫》Cats 北京站</span>
+        </div>
+        <div class="show-warp">
+            <div class="show-main" style="width: 100%;">
+                <div class="goods">
+                    <!-- 海报区 -->
+                    <div class="poster">
+                        <div class="picbox" th:style="'background:url(' + ${ticket.img} + ') no-repeat 50% 50%;background-size: 280px 372px;'"></div>
+                    </div>
+                    <!-- 信息区 -->
+                    <div class="dleft">
+                        <div class="gInfo">
+                            <div class="dRow">
+                                <h2 class="title show-title w720" th:text="${ticket.name}">世界经典原版音乐剧《猫》Cats 北京站</h2>
+                                <div class="dtt">城　　市：</div>
+                                <div class="ct">
+                                    <a href="javascript:void(0)" class="c-999" target="_blank">
+                                        <span class="venue-name" th:text="${ticket.cityname}">世纪剧院</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="dRow">
+                                <div class="dtt">场　　馆：</div>
+                                <div class="ct">
+                                    <a th:href="@{'http://map.baidu.com/?newmap=1&s=inf%26uid%3D'+ ${ticket.venue} +'%26all%3D1%26c%3D268&from=alamap&tpl=map_singlepoint'}" class="c-999" target="_blank">
+                                        <span class="venue-name" th:text="${ticket.venue}">世纪剧院</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="dRow">
+                                <div class="dtt">支　　持：</div>
+                                <div class="ct">
+                                    <span th:if="${ticket.isxuanzuo}" class="c-999 venue-name">在线选座</span>
+                                    <span th:if="${ticket.iseticket}" class="c-999 venue-name">电子票</span>
+                                </div>
+                            </div>
+                            <div class="dRow">
+                                <div class="dtt">状　　态：</div>
+                                <div class="ct">
+                                    <span th:text="${ticket.showstatus}" class="c-999 venue-name">未知..</span>
+                                </div>
+                            </div>
+                            <div class="dRow">
+                                <div class="dtt">票务描述：</div>
+                                <div class="ct"> 
+                                    <a href="javascript:void(0)" class="c-999">
+                                        <span class="venue-name" th:text="${ticket.introduction}">1.2米以下儿童谢绝入场（儿童项目除外），1.2米以上儿童需持票入场。</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="dRow deta-btn">
+                                <div class="ctt">
+                                    <a th:href="@{'/User/addCollect?ticketid='+${ticket.id}}" class="btn btn-l">加入收藏</a>
+                                    <a th:href="@{'https://piao.damai.cn/'+${ticket.projectid}+'.html'}" class="btn btn-r" target="_blank">立即购买</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+    <footer>
+        <div class="mini_foot x-foot">
+            <p>Copyright 2018.9 © DLSZ网 Java班 第三小组</p>
+        </div>
+    </footer>
+</body>
+
+
+<script th:src="@{/static/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/static/js/index.js}"></script>
+<script>
+
+    var yc = document.getElementById("yanchang");
+    var yy = document.getElementById("yy");
+    var gj = document.getElementById("gj");
+    var et = document.getElementById("et");
+    
+
+
+
+    var kind = document.getElementById("kind")
+    var right = document.getElementById("right");
+    var r1 = document.getElementById("r1");
+    var r2 = document.getElementById("r2");
+    var r3 = document.getElementById("r3");
+    var r4 = document.getElementById("r4");
+    var rr = [r1,r2,r3,r4];
+
+    //经过各个标签
+
+
+
+    /*yc.onmouseover = function(){
+        right.classList.add("active");
+        r1.classList.add("active");
+        kind.classList.add("xian");
+    }
+    yc.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r1.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    yy.onmouseover = function(){
+        right.classList.add("active");
+        r2.classList.add("active");
+        kind.classList.add("xian");
+    }
+    yy.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r2.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    gj.onmouseover = function(){
+        right.classList.add("active");
+        r3.classList.add("active");
+        kind.classList.add("xian");
+    }
+    gj.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r3.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    et.onmouseover = function(){
+        right.classList.add("active");
+        r4.classList.add("active");
+        kind.classList.add("xian");
+    }
+    et.onmouseout = function(){
+        right.setAttribute("class","right-detail")
+        r4.setAttribute("class","kind-details")
+        kind.setAttribute("class","kind-list")
+    }
+    //经过各个子栏
+    
+    // console.log(rr);
+    for( i=0; i<rr.length; i++){
+        rr[i].onmouseover = function(){
+            right.classList.add("active");
+            this.classList.add("active");
+        kind.classList.add("xian");
+        }
+        rr[i].onmouseout = function(){
+            right.setAttribute("class","right-detail")
+            this.setAttribute("class","kind-details")
+            kind.setAttribute("class","kind-list")
+        }
+    }
+
+    var all = document.getElementById("all")
+    all.onmouseover = function(){
+        kind.classList.add("active");
+    }
+    all.onmouseout = function(){
+        kind.setAttribute("class","kind-list")
+        kind.classList.add("kind-ss-list")
+    }
+    kind.onmouseover = function(){
+        kind.classList.add("active");
+    }
+    kind.onmouseout = function(){
+        kind.setAttribute("class","kind-list")
+        kind.classList.add("kind-ss-list")
+    }*/
+
+    var inp = document.getElementById("inp")
+    var cha = document.getElementById("cha")
+
+    inp.oninput = function(){
+        // console.log($.trim(inp.value).length)
+        var condition = $.trim(inp.value)
+        if (condition != ""){
+            // console.log("asdf")
+            cha.classList.add("search-result-active");
+            $("#cha").empty();
+            $.post("/searchList", {"condition":condition}, function (data, status) {
+                if (status === "success" && $.trim(data['status']) === '200') {
+                    $.each(data['data'], function (index, value) {
+                        $("#cha").append('<li class="result-items"><a href="/ticket/item/'+ value['id'] +'" target="_blank" class="result-link">' + value['cityname'] + '<span class="key-word"> </span>' + value['name'] + '</a></li>')
+                    })
+                } else {
+                    console.log(data['msg']);
+                }
+
+            }, "json")
+        } else {
+            //$("#cha").empty();
+            cha.setAttribute("class","search-result")
+        }
+    }
+
+    cha.onmouseover=function () {
+        // console.log("ads")
+        cha.classList.add("search-result-active")
+    }
+    // inp.onblur = function(){
+    //     cha.setAttribute("class","search-result")
+    // }
+    cha.onmouseover = function () {
+        // console.log("gg")
+        cha.classList.add("search-result-active")
+    }
+    cha.onmouseout = function () {
+        cha.setAttribute("class","search-result")
+    }
+</script>
+</html>

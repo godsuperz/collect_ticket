@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{/static/css/geren.css}" href="/static/css/geren.css">
+    <link rel="stylesheet" th:href="@{/static/css/shouye.css}" href="/static/css/shouye.css">
     <script src=""></script>
     <title>我的DLSZ-个人资料</title>
 </head>
@@ -22,49 +23,59 @@
 
                     <!-- 已登录 -->
                     <div id="js-login-out" class="ds-inlineb">
-                        <div class="nav-items">
-                            <span class="c9">你好,</span>
-                            <a id="js-get-username" class="nav-link no-border-left" href="#" target="_black">DLSZ</a>
-                        </div>
-                        <div class="nav-items">
-                            <a class="nav-link c9" href="denglu.html">退出</a>
-                        </div>
+                        <th:block th:if="${username} != null">
+                            <div class="nav-items">
+                                <a id="js-get-username" class="nav-link no-border-left" th:href="@{/User/mycollect}" target="_black" th:text="${username}">DLSZ</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link c9" href="/logout">退出</a>
+                            </div>
+                        </th:block>
+                        <th:block th:if="${username} == null">
+                            <div class="nav-items">
+                                <a id="login" class="nav-link no-border-left" th:href="@{/User/login}">登录</a>
+                            </div>
+                            <div class="nav-items">
+                                <a class="nav-link" th:href="@{/User/register}">注册</a>
+                            </div>
+                        </th:block>
                     </div> 
                     <!-- 已登陆END -->
 
 
-                    <div class="nav-items">
+                    <!--<div class="nav-items">
                         <a class="nav-link" href="#">我的订单</a>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
         <!-- 头部 -->
         <div class="new-header new-shadow">
-            <div class="w1200">
+            <div class="w1200 content-box">
                 <div class="shouye">
-                    <a href="../shouye.html">DLSZ</a>
+                    <a th:href="@{/}">DLSZ</a>
                 </div><!-- 
                 --><div class="search-box">
-                    <div class="search-bar">
-                        <div class="search-input">
-                            <input class="js-search" type="text">
-                        </div><!-- 
-                         --><a href="#" class="search-btn">
-                            <i></i>
-                        </a>
-                    </div>
+                <div class="search-bar">
+                    <div class="search-input">
+                        <input id="inp" class="js-search" type="text" th:value="${key}">
+                    </div><!--
+                         --><div class="search-btn" id="sou">
+                    <i></i>
+
+                </div>
+                    <ul class="search-result" id="cha">
+                        <!--<li class="result-items">
+                            <a href="#" target="_blank" class="result-link">
+                                北京
+                                <span class="key-word">小</span>
+                                小柯音乐剧“爱情三部曲”之二《等你爱我》
+                            </a>
+                        </li>-->
+                    </ul>
+                </div>
                     <div class="hot-search">
-                        <ul>
-                            <li><a href="">小野丽莎</a></li>
-                            <li><a href="">陈慧娴</a></li>
-                            <li><a href="">十二生肖</a></li>
-                            <li><a href="">三体</a></li>
-                            <li><a href="">回声</a></li>
-                            <li><a href="">GATS</a></li>
-                            <li><a href="">杨丞琳</a></li>
-                            <li><a href="">房东的猫</a></li>
-                            <li><a href="">花粥</a></li>
+                        <ul id="hotWord">
                         </ul>
                     </div> 
                 </div>
@@ -76,13 +87,13 @@
             <h2 class="my-dlsz"><a href="#">我的DLSZ</a></h2>
             <h2 class="my-order"><a href="#">订单中心</a> </h2>
             <ul>
-                <li><a id="hover" class="noh" href="myorderlist.html"><i></i><b class="arr"></b>我的订单</a></li>
-                <li><a id="hover" class="noh" href="mycollect.html"><i></i><b class="arr"></b>我的关注</a></li>
+                <!--<li><a id="hover" class="noh" href="myorderlist.html"><i></i><b class="arr"></b>我的订单</a></li>-->
+                <li><a id="hover" class="noh" href="/User/mycollect"><i></i><b class="arr"></b>我的关注</a></li>
             </ul>
             <h2 class="my-profile"><a href="#">账户中心</a> </h2>
             <ul>
-                <li><a id="hover" class="active" href="myprofile.html"><i></i><b class="arr"></b>个人资料</a></li>
-                <li><a id="hover" class="noh" href="myaddress.html"><i></i><b class="arr"></b>收获地址</a></li>
+                <li><a id="hover" class="active" href="/User/myprofile"><i></i><b class="arr"></b>个人资料</a></li>
+                <!--<li><a id="hover" class="noh" href="myaddress.html"><i></i><b class="arr"></b>收获地址</a></li>-->
             </ul>
             <h2 class="my-note"><a href="#">消息提醒</a> </h2>
         </div>
@@ -114,27 +125,28 @@
                                 <div class="edf-tit">
                                     <b class="txt">基本资料：</b>
                                 </div>
-                                <form class="" method="post">
+                                <form class="" th:action="@{/User/updateUser}" th:method="post">
                                     <ul>
+                                        <input th:value="${user.id}" name="userid" id="userid" type="hidden">
                                         <li class="clearfix">
-                                            <span class="e-name">昵称：</span>
+                                            <span class="e-name">账号：</span>
                                             <div class="col-md-10">
-                                                <input class="form-control" name="nike_name" type="text" maxlength="30">
+                                                <input th:value="${user.username}" name="username" id="username" class="form-control" type="text" maxlength="30">
                                             </div>
                                         </li>
                                         <li class="clearfix">
-                                            <span class="e-name">邮箱登录：</span>
+                                            <span class="e-name">邮箱地址：</span>
                                             <div class="col-md-10">
-                                                <input class="form-control" name="email" type="text" maxlength="30">
+                                                <input th:value="${user.email}" name="useremail" id="useremail" class="form-control" type="text" maxlength="30">
                                             </div>
                                         </li>
                                         <li class="clearfix">
-                                            <span class="e-name">绑定手机：</span>
+                                            <span class="e-name">手机号码：</span>
                                             <div class="col-md-10">
-                                                <input class="form-control" name="mobile" type="text" maxlength="11">
+                                                <input th:value="${user.phone}" name="userphone" id="userphone" class="form-control" type="text" maxlength="11">
                                             </div>
                                         </li>
-                                        <li class="clearfix">
+                                        <!--<li class="clearfix">
                                             <span class="e-name">真实姓名：</span>
                                             <div class="col-md-10">
                                                 <input class="form-control" name="name" type="text" maxlength="11">
@@ -145,22 +157,32 @@
                                             <div class="col-md-10">
                                                 <input class="form-control" name="idc" type="text" maxlength="11">
                                             </div>
-                                        </li>
+                                        </li>-->
                                         <li class="clearfix">
                                             <span class="e-name">性别：</span>
                                             <div class="col-md-10">
-                                                <select name="gender">
-                                                    <option value="0" selected="selected">--保密--</option>
-                                                    <option value="1">男</option>
-                                                    <option value="2">女</option>
+                                                <select name="usergender" id="usergender">
+                                                    <option th:selected="${user.sex eq 0}" value="0" selected="selected">--保密--</option>
+                                                    <option th:selected="${user.sex eq 1}" value="1">男</option>
+                                                    <option th:selected="${user.sex eq 2}" value="2">女</option>
                                                 </select>
                                             </div>
                                         </li>
                                         <li class="clearfix">
+                                            <span class="e-name">出生日期：</span>
+                                            <div class="col-md-10">
+                                                <input th:value="${user.birthday}" id="userbirthday" class="form-control" name="userbirthday" type="text" maxlength="11">
+                                            </div>
+                                        </li>
+                                        <li class="clearfix">
+                                            <span class="e-name">&nbsp;</span>
+                                            <button class="btn save-profile" id="updateUserBtn">保存资料</button>
+                                        </li>
+                                        <!--<li class="clearfix">
                                             <span class="e-name">演出喜好：</span>
                                             <div class="col-md-10">
                                                 <select name="category">
-                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="0" selected="selected">&#45;&#45;请选择&#45;&#45;</option>
                                                     <option value="35">演唱会</option>
                                                     <option value="36">古典音乐</option>
                                                     <option value="37">舞台剧</option>
@@ -173,17 +195,17 @@
                                             <span class="e-name">居住地：</span>
                                             <div class="col-md-10">
                                                 <select name="provice">
-                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="0" selected="selected">&#45;&#45;请选择&#45;&#45;</option>
                                                     <option value="1">北京</option>
                                                     <option value="2">河南</option>
                                                 </select>
                                                 <select name="city">
-                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="0" selected="selected">&#45;&#45;请选择&#45;&#45;</option>
                                                     <option value="1"></option>
                                                     <option value="2"></option>
                                                 </select>
                                                 <select name="district">
-                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="0" selected="selected">&#45;&#45;请选择&#45;&#45;</option>
                                                     <option value="1"></option>
                                                     <option value="2"></option>
                                                 </select>
@@ -194,9 +216,9 @@
                                             <div class="col-md-10">
                                                 <textarea name="address" class="form-control" id="" cols="30" rows="3" style="width: 560px;height:95px;resize:none"></textarea>
                                             </div>
-                                        </li>
+                                        </li>-->
                                     </ul>
-                                    <div class="edf-tit">
+                                    <!--<div class="edf-tit">
                                         <b class="txt">其他资料：</b>
                                     </div>
                                     <ul>
@@ -210,7 +232,7 @@
                                             <span class="e-name">婚姻状况：</span>
                                             <div class="col-md-10">
                                                 <select name="mariage">
-                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="0" selected="selected">&#45;&#45;请选择&#45;&#45;</option>
                                                     <option value="1">单身</option>
                                                     <option value="2">恋爱中</option>
                                                     <option value="3">已婚但无子女</option>
@@ -222,7 +244,7 @@
                                             <span class="e-name">教育程度：</span>
                                             <div class="col-md-10">
                                                 <select name="edu">
-                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="0" selected="selected">&#45;&#45;请选择&#45;&#45;</option>
                                                     <option value="1">高中及一下</option>
                                                     <option value="2">大学</option>
                                                     <option value="3">硕士</option>
@@ -234,7 +256,7 @@
                                             <span class="e-name">月收入：</span>
                                             <div class="col-md-10">
                                                 <select name="income">
-                                                    <option value="0" selected="selected">--请选择--</option>
+                                                    <option value="0" selected="selected">&#45;&#45;请选择&#45;&#45;</option>
                                                     <option value="1">2000元以下</option>
                                                     <option value="2">2000-3999元</option>
                                                     <option value="3">4000-5999元</option>
@@ -254,7 +276,7 @@
                                             <span class="e-name">&nbsp;</span>
                                             <button class="btn save-profile">保存资料</button>
                                         </li>
-                                    </ul>
+                                    </ul>-->
                                 </form>
                             </div>
                         </div>
@@ -270,6 +292,11 @@
         </div>
     </footer>
 </body>
+
+<script th:src="@{/static/js/jquery-3.3.1.js}"></script>
+<script th:src="@{/static/js/Feng.js}"></script>
+<script th:src="@{/static/js/index.js}"></script>
+
 <script>
     var hover = document.getElementsByClassName("noh");
     for(var i =0;i<hover.length;i++){
@@ -281,7 +308,39 @@
             this.setAttribute("class","noh")
         }
     }
-    
+
+    var inp = document.getElementById("inp")
+    var cha = document.getElementById("cha")
+
+    inp.oninput = function(){
+        // console.log($.trim(inp.value).length)
+        var condition = $.trim(inp.value)
+        if (condition != ""){
+            // console.log("asdf")
+            cha.classList.add("search-result-active");
+            $("#cha").empty();
+            $.post("/searchList", {"condition":condition}, function (data, status) {
+                if (status === "success" && $.trim(data['status']) === '200') {
+                    $.each(data['data'], function (index, value) {
+                        $("#cha").append('<li class="result-items"><a href="/ticket/item/'+ value['id'] +'" target="_blank" class="result-link">' + value['cityname'] + '<span class="key-word"> </span>' + value['name'] + '</a></li>')
+                    })
+                } else {
+                    console.log(data['msg']);
+                }
+
+            }, "json")
+        } else {
+            //$("#cha").empty();
+            cha.setAttribute("class","search-result")
+        }
+    }
+    cha.onmouseover = function () {
+        // console.log("gg")
+        cha.classList.add("search-result-active")
+    }
+    cha.onmouseout = function () {
+        cha.setAttribute("class","search-result")
+    }
 
 </script>
 </html>

@@ -19,7 +19,7 @@
     <main>
         <div class="login_page">
             <div class="login_main">
-                <div class="static_form">
+                <form class="static_form" th:action="@{/loginVali}" th:method="post">
                     <div class="tt">账号登录</div>
                     <div class="field">
                         <i class="ico_user"></i>
@@ -50,7 +50,7 @@
                             微信登录
                         </a>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </main>

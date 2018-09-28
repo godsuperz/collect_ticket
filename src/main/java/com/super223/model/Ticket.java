@@ -94,6 +94,41 @@ public class Ticket {
      */
     private Boolean iseticket;
 
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", merchantid=" + merchantid +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", state=" + state +
+                ", count=" + count +
+                ", introduction='" + introduction + '\'' +
+                ", audit=" + audit +
+                ", click=" + click +
+                ", purchase=" + purchase +
+                ", img='" + img + '\'' +
+                ", actors='" + actors + '\'' +
+                ", categoryname='" + categoryname + '\'' +
+                ", cityname='" + cityname + '\'' +
+                ", iseticket=" + iseticket +
+                ", isgeneralagent=" + isgeneralagent +
+                ", issuperticket=" + issuperticket +
+                ", isxuanzuo=" + isxuanzuo +
+                ", namenohtml='" + namenohtml + '\'' +
+                ", pricehigh=" + pricehigh +
+                ", showstatus='" + showstatus + '\'' +
+                ", showtag='" + showtag + '\'' +
+                ", showtime='" + showtime + '\'' +
+                ", subcategoryname='" + subcategoryname + '\'' +
+                ", venue='" + venue + '\'' +
+                ", projectid='" + projectid + '\'' +
+                ", priceStr='" + priceStr + '\'' +
+                '}';
+    }
+
     /**
      * 是否是一般代理票
      */
